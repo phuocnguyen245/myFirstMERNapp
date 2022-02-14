@@ -1,10 +1,21 @@
 
 import { Categories } from '../models/categoriesModel.js'
-export const getCategories = async (req, res) => {
+import { Shops } from '../models/shopsModel.js'
+export const hompageApi = async (req, res) => {
     try {
-        const categories = await Categories.find()
-        console.log(categories);
-        res.send({categories})
+        const categories = await Categories.find().limit(3)
+        const shops = await Shops.find()
+        console.log({ categories, shops });
+        res.send({ categories, shops })
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const homepageSearchApi = async (req, res) => {
+    try {
+        const query = req.query.q
+        const shops = await Shops.find({ shopName: { $regex: '.*' + query + '.*' } })
+        res.send({ shops })
     } catch (error) {
         console.log(error);
     }

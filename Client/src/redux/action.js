@@ -10,3 +10,9 @@ export const getHomepageData = (data) =>{
         payload: data
     }
 }
+export const searchData = (data) =>{
+    return {
+        type: 'homepage/searchData',
+        payload: data
+    }
+}

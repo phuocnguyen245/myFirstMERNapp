@@ -1,22 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSearchFetch } from './homePageSlice'
+import SearchBar from './SearchBar'
 const LeftHomePage = ({ left, rightValue }) => {
-  const [leftHeight, setLeftHeight] = useState(0)
-  const [text, setText] = useState('')
   const [addAbsolute, setAddAbsolute] = useState('content-container-left')
-  const [plusHeight, setPlusHeight] = useState()
+  const [plusHeight, setPlusHeight] = useState(0)
+  const [searchText, setSearchText] = useState('')
   const leftRef = useRef()
-
+  const typingTimeoutRef = useRef(null)
   useEffect(() => {
     const onLoad = () => {
-      setLeftHeight(leftRef.current.getBoundingClientRect().height)
+      left(leftRef.current.getBoundingClientRect().height)
     }
     window.addEventListener('load', onLoad)
     return () => {
       window.removeEventListener('load', onLoad)
     }
-  }, [])
-
-  left(leftHeight)
+  }, [left])
 
   useEffect(() => {
     const scroll = () => {
@@ -26,7 +26,7 @@ const LeftHomePage = ({ left, rightValue }) => {
         setPlusHeight(rightValue - window.innerHeight)
       } else {
         setAddAbsolute('content-container-left')
-        setPlusHeight(60)
+        setPlusHeight(0)
       }
     }
     window.addEventListener('scroll', scroll)
@@ -34,6 +34,17 @@ const LeftHomePage = ({ left, rightValue }) => {
       window.removeEventListener('scroll', scroll)
     }
   })
+  const dispatch = useDispatch()
+  const handleSearch = (e) => {
+    setSearchText(e.target.value)
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current)
+    }
+    typingTimeoutRef.current = setTimeout(() => {
+      e.target.value === '' ? dispatch(getSearchFetch(null)) : dispatch(getSearchFetch(e.target.value))
+    }, 500)
+  }
+
   return (
     <div ref={leftRef} className={addAbsolute} style={{ top: `${plusHeight}px` }}>
       <div className="container">
@@ -43,12 +54,13 @@ const LeftHomePage = ({ left, rightValue }) => {
             <p className="t-w">Có 9047 Địa Điểm Ở Đà Nẵng Từ 06:00 - 22:00</p>
           </div>
           <div className="left__search col-12 col-sm-12 col-md-12 p-0">
-            <input type="text" value={text} onChange={e => setText(e.target.value)} placeholder="Tìm địa điểm, món ăn, địa chỉ" />
+            <input type="text" value={searchText} onChange={handleSearch} placeholder="Tìm địa điểm, món ăn, địa chỉ" />
             <a href="/#">
               <button className="btn">
                 <i className="fa fa-search text-white" />
               </button>
             </a>
+            <SearchBar />
           </div>
           <div className="left__menu flex">
             <a className="left__menu__item" href="/#">All</a>

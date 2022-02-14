@@ -2,22 +2,38 @@ import { createSlice } from '@reduxjs/toolkit'
 export const homePageSlice = createSlice({
     name: 'homepage',
     initialState: {
-        data: [],
-        isLoading: false
+        categories: [],
+        shops: [],
+        text:'',
+        searchData: []
     },
     reducers: {
-        getHomepageDataSuccess: (state, action) => {
-            state.data = action.payload
-            state.isLoading = false
+        //HomePage data
+        getCategoriesSuccess: (state, action) => {
+            state.categories = action.payload
+        },
+        getShopSuccess: (state, action) => {
+            state.shops = action.payload
         },
         getHomepageDataFetch: (state, action) => {
-            state.isLoading= true
+            state.text = action.payload
         },
         getHomepageDataFailure: (state, action) => {
-            state.isLoading= false
-        }
+        },
+        getSearchFetch: (state, action) => {
+            state.text = action.payload
+        },
+        getSearchSuccess: (state, action) => {
+            state.searchData = action.payload
+        },
     }
 })
 
-export const { getHomepageDataSuccess, getHomepageDataFetch, getHomepageDataFailure  } = homePageSlice.actions
+export const {
+    getShopSuccess,
+    getCategoriesSuccess,
+    getHomepageDataFetch,
+    getHomepageDataFailure,
+    getSearchSuccess,
+    getSearchFetch } = homePageSlice.actions
 export default homePageSlice.reducer

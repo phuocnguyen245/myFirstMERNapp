@@ -70,6 +70,9 @@ b {
             background: $blue;
           }
         }
+        .search-bar{
+          background-color: #fff;
+        }
       }
       &__menu {
         flex-wrap: wrap;
@@ -166,6 +169,7 @@ b {
             width: calc(100% - 16px);
             a {
               cursor: pointer;
+              overflow: hidden;
               border-radius: 6px;
               background-color: #fff;
               position: relative;
@@ -179,7 +183,6 @@ b {
               }
               img {
                 position: relative;
-                overflow: hidden;
                 height: 120px;
                 width: 100%;
                 background: #eaeaea;
@@ -194,6 +197,7 @@ b {
                   -webkit-box-orient: vertical;
                   display: -webkit-box;
                   padding: 0 8px;
+                  text-transform: capitalize;
                   &:first-child {
                     font-weight: bold;
                     font-size: 14px;

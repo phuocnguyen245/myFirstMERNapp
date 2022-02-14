@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="container">
                 <h3>Danh mục</h3>
                 <div className="row">
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list">
+                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>
@@ -17,7 +17,7 @@ const Footer = () => {
                             <a href="/#">Khẩn cấp</a>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list">
+                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>
@@ -28,7 +28,7 @@ const Footer = () => {
                             <a href="/#">Khẩn cấp</a>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list">
+                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>
@@ -39,7 +39,7 @@ const Footer = () => {
                             <a href="/#">Khẩn cấp</a>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list">
+                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>
@@ -50,7 +50,7 @@ const Footer = () => {
                             <a href="/#">Khẩn cấp</a>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list">
+                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>
@@ -61,7 +61,7 @@ const Footer = () => {
                             <a href="/#">Khẩn cấp</a>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list">
+                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>
@@ -72,7 +72,7 @@ const Footer = () => {
                             <a href="/#">Khẩn cấp</a>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list">
+                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>

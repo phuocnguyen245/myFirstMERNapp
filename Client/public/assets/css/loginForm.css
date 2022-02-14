@@ -339,7 +339,7 @@ footer > h3 {
 footer .footer__list a {
   color: rgba(0, 0, 0, 0.54);
   text-decoration: none;
-  margin-left: 5px;
+  margin-right: 7px;
 }
 
 footer .footer__list a:hover {

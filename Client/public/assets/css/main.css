@@ -84,6 +84,10 @@ b {
   background: #0288d1;
 }
 
+.content-container-left .container .left__search .search-bar {
+  background-color: #fff;
+}
+
 .content-container-left .container .left__menu {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -194,6 +198,7 @@ b {
 
 .content-container-right .container .right .right-wrapper .right__list .right-item a {
   cursor: pointer;
+  overflow: hidden;
   border-radius: 6px;
   background-color: #fff;
   position: relative;
@@ -214,7 +219,6 @@ b {
 
 .content-container-right .container .right .right-wrapper .right__list .right-item a img {
   position: relative;
-  overflow: hidden;
   height: 120px;
   width: 100%;
   background: #eaeaea;
@@ -233,6 +237,7 @@ b {
   -webkit-box-orient: vertical;
   display: -webkit-box;
   padding: 0 8px;
+  text-transform: capitalize;
 }
 
 .content-container-right .container .right .right-wrapper .right__list .right-item a .right-item__desc p:first-child {
@@ -636,7 +641,7 @@ footer > h3 {
 footer .footer__list a {
   color: rgba(0, 0, 0, 0.54);
   text-decoration: none;
-  margin-left: 5px;
+  margin-right: 7px;
 }
 
 footer .footer__list a:hover {
