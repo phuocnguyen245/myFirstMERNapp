@@ -15,7 +15,6 @@ const RightHomePage = ({ right }) => {
         }
     }, [right])
 
-
     return (
         <div ref={rightRef} className="content-container-right clearfix">
             <div className="container">

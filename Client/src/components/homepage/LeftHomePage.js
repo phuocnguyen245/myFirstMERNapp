@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSearchFetch } from './homePageSlice'
+import { categoriesSelector } from '../../redux/selector'
 import SearchBar from './SearchBar'
 const LeftHomePage = ({ left, rightValue }) => {
   const [addAbsolute, setAddAbsolute] = useState('content-container-left')
@@ -34,6 +35,7 @@ const LeftHomePage = ({ left, rightValue }) => {
       window.removeEventListener('scroll', scroll)
     }
   })
+
   const dispatch = useDispatch()
   const handleSearch = (e) => {
     setSearchText(e.target.value)
@@ -44,6 +46,8 @@ const LeftHomePage = ({ left, rightValue }) => {
       e.target.value === '' ? dispatch(getSearchFetch(null)) : dispatch(getSearchFetch(e.target.value))
     }, 500)
   }
+
+  const categories = useSelector(categoriesSelector)
 
   return (
     <div ref={leftRef} className={addAbsolute} style={{ top: `${plusHeight}px` }}>
@@ -64,15 +68,9 @@ const LeftHomePage = ({ left, rightValue }) => {
           </div>
           <div className="left__menu flex">
             <a className="left__menu__item" href="/#">All</a>
-            <a className="left__menu__item" href="/#">Đồ ăn</a>
-            <a className="left__menu__item" href="/#">Đồ uống</a>
-            <a className="left__menu__item" href="/#">Đồ chay</a>
-            <a className="left__menu__item" href="/#">Bánh kem</a>
-            <a className="left__menu__item" href="/#">Tráng miệng</a>
-            <a className="left__menu__item" href="/#">Đồ ăn</a>
-            <a className="left__menu__item" href="/#">Đồ ăn</a>
-            <a className="left__menu__item" href="/#">Đồ ăn</a>
-            <a className="left__menu__item" href="/#">Đồ ăn</a>
+            {categories.map(category => {
+              return <a key={category._id} className="left__menu__item" href="/#" >{category.name}</a>
+            })}
           </div>
           <div className="left__text">
             <p className="t-w">Sử dụng App ShopeeFood để có nhiều giảm giá

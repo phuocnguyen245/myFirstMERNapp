@@ -5,7 +5,6 @@ export const hompageApi = async (req, res) => {
     try {
         const categories = await Categories.find().limit(3)
         const shops = await Shops.find()
-        console.log({ categories, shops });
         res.send({ categories, shops })
     } catch (error) {
         console.log(error);
@@ -14,7 +13,7 @@ export const hompageApi = async (req, res) => {
 export const homepageSearchApi = async (req, res) => {
     try {
         const query = req.query.q
-        const shops = await Shops.find({ shopName: { $regex: '.*' + query + '.*' } })
+        const shops = await Shops.find({ shopName: { $regex: `.*${query}.*` } })
         res.send({ shops })
     } catch (error) {
         console.log(error);

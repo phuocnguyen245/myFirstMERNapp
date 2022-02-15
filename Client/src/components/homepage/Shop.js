@@ -2,8 +2,8 @@ import React from 'react'
 
 const Shop = ({shopName, address, cost, img}) => {
     return (
-        <div className="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-4 p-1 right-item" id="">
-            <a className href="/#">
+        <div className="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-4 p-1 right-item">
+            <a href="/#">
                 <img src={`./assets/img/${img}`} alt="" />
                 <div>
                     <div className="right-item__desc">

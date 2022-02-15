@@ -5,17 +5,17 @@ const SearchBar = () => {
     return (
         <ul className="search-bar">
             {shops.map(shop => {
-                return <li>
-                <a href="/#">
-                    <img src={`./assets/img/${shop.img}`} alt="" />
-                    <div className="search-bar__item">
-                        <p>{shop.shopName}</p>
-                        <p>{shop.address}</p>
-                    </div>
-                </a>
-            </li>
+                return <li key={shop._id}>
+                    <a href="/#">
+                        <img src={`./assets/img/${shop.img}`} alt="" />
+                        <div className="search-bar__item">
+                            <p title={shop.shopName.toUpperCase()}>{shop.shopName}</p>
+                            <p title={shop.address}>{shop.address}</p>
+                        </div>
+                    </a>
+                </li>
             })}
-            
+
         </ul>
     )
 }

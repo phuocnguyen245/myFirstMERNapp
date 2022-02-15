@@ -32,7 +32,7 @@ b {
   width: 38%;
   z-index: 2;
   position: absolute;
-  top: 50%;
+  top: 60%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   margin-top: -30px;
@@ -94,6 +94,7 @@ b {
   right: 0;
   border-radius: 6px;
   max-height: 300px;
+  overflow-y: scroll;
 }
 
 .content-container-left .container .left__search .search-bar li {
@@ -124,6 +125,7 @@ b {
 .content-container-left .container .left__search .search-bar li a .search-bar__item {
   padding-left: 10px;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .content-container-left .container .left__search .search-bar li a .search-bar__item p {
@@ -131,14 +133,13 @@ b {
   padding: 0;
   margin: 0;
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .content-container-left .container .left__search .search-bar li a .search-bar__item p:first-child {
-  display: -webkit-box;
   font-weight: bold;
   text-transform: capitalize;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .content-container-left .container .left__search .search-bar::before {
@@ -147,6 +148,19 @@ b {
   position: absolute;
   top: -15px;
   width: 100%;
+}
+
+.content-container-left .container .left__search .search-bar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content-container-left .container .left__search .search-bar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+.content-container-left .container .left__search .search-bar::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .content-container-left .container .left__menu {

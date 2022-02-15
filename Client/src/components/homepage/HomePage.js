@@ -19,7 +19,6 @@ const HomePage = () => {
         <div>
             <LeftHomePage left={left} rightValue={rightValue} />
             <RightHomePage right={right} leftValue={leftValue} />
-            <h1>{rightValue}</h1>
         </div>
     )
 }

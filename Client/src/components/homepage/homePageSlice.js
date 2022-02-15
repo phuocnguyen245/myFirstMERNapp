@@ -35,5 +35,7 @@ export const {
     getHomepageDataFetch,
     getHomepageDataFailure,
     getSearchSuccess,
-    getSearchFetch } = homePageSlice.actions
+    getSearchFetch 
+} = homePageSlice.actions
+
 export default homePageSlice.reducer

@@ -29,7 +29,7 @@ b {
       width: 38%;
       z-index: 2;
       position: absolute;
-      top: 50%;
+      top: 60%;
       transform: translateY(-50%);
       margin-top: -30px;
       padding: 0;
@@ -80,6 +80,7 @@ b {
           right: 0;
           border-radius: 6px;
           max-height: 300px;
+          overflow-y: scroll;
           li {
             list-style: none;
             height: 100%;
@@ -97,17 +98,17 @@ b {
               .search-bar__item {
                 padding-left: 10px;
                 overflow: hidden;
+                white-space: nowrap;
                 p {
                   font-size: 14px;
                   padding: 0;
                   margin: 0;
                   width: 100%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
                   &:first-child {
-                    display: -webkit-box;
                     font-weight: bold;
                     text-transform: capitalize;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
                   }
                 }
               }
@@ -119,6 +120,16 @@ b {
             position: absolute;
             top: -15px;
             width: 100%;
+          }
+          &::-webkit-scrollbar {
+            width: 6px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 8px;
+          }
+          &::-webkit-scrollbar-thumb:hover {
+            background: #555; 
           }
         }
       }
