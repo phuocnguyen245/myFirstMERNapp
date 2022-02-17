@@ -4,35 +4,11 @@ const Header = () => {
   return (
     <header id="header">
         <div className="container-header">
-          <div className="container p-2">
-            <div className="row p-2 justify-content-between align-items-center">
-              <div className="col-2 p-0">
-                <a href="index.html">
-                  <img className="shopeefoodlogo" src="./assets/img/shopeefoodvn.png" alt="" />
-                </a>
-              </div>
-              <div className="dropdown">
-                <button className="btn btn-light dropdown-toggle fz-14" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Đà Nẵng
-                </button>
-                <div className="dropdown-menu" style={{left: 'unset !important'}} aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item bg-light" href="/#">
-                    <span>Hà Nội</span>
-                    <span>1000000 địa điểm</span>
-                  </a>
-                  <a className="dropdown-item bg-light" href="/#">
-                    <span>TP. HCM</span>
-                    <span>1 địa điểm</span>
-                  </a>
-                  <a className="dropdown-item bg-light" href="/#">
-                    <span>Hải Phòng</span>
-                    <span>1 địa điểm</span>
-                  </a>
-                </div>
-              </div>
+          <div className="container p-2"> 
+            <div className="row p-2 justify-content-between align-items-center">    
               <nav className="flex justify-content-start">
                 <div className="nav-item active-color">
-                  <a href="/#" className>
+                  <a href="/#">
                     <img style={{display: 'none'}} src="./assets/img/imgsmall1.png" alt="" />
                     <p>Đồ ăn</p>
                   </a>

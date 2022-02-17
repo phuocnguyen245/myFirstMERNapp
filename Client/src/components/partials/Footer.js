@@ -90,7 +90,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="footer-col col-md-3 col-sm-3 col-xl-3 p-0">
                         <h3>Công ty</h3>
-                        <ul className>
+                        <ul>
                             <li><a href="/#">Giới thiệu</a></li>
                             <li><a href="/#">Trung tâm Trợ giúp</a></li>
                             <li><a href="/#">Quy chế</a></li>
@@ -105,14 +105,14 @@ const Footer = () => {
                     </div>
                     <div className="footer-col col-md-2 col-sm-2 col-xl-2 p-0">
                         <h3>Ứng dụng ShopeeFood</h3>
-                        <ul className>
+                        <ul>
                             <li><a href="/#"><img src="./assets/img/AppStore-vn.png" alt="" /></a></li>
                             <li><a href="/#"><img src="./assets/img/PlayStore-vn.png" alt="" /></a></li>
                             <li><a href="/#"><img src="./assets/img/Huawei-gallery-vn.png" alt="" /></a></li>
                         </ul>
                     </div>
                     <div className="footer-col col-md-2 col-sm-1 col-xl-2 p-0">
-                        <ul className>
+                        <ul>
                             <li><img src="./assets/img/Logo-ShopeefoodVN.png" alt="" /></li>
                             <li>© 2021 ShopeeFood</li>
                             <div className="row">
@@ -123,7 +123,7 @@ const Footer = () => {
                     </div>
                     <div className="footer-col col-md-5 col-sm-5 col-xl-5 p-0">
                         <h3>Địa chỉ công ty</h3>
-                        <ul className>
+                        <ul>
                             <li>Công Ty Cổ Phần Foody</li>
                             <li>Lầu G, Tòa nhà Jabes 1,</li>
                             <li>số 244 đường Cống Quỳnh, phường Phạm Ngũ Lão, Quận 1, TPHCM</li>

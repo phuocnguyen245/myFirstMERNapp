@@ -11,7 +11,7 @@ const Banner = () => {
                             đường đi một cách tốt nhất.</p>
                     </div>
                     <div className="banner-container__img">
-                        <img className src="./assets/img/banner1.png" alt="" />
+                        <img src="./assets/img/banner1.png" alt="" />
                     </div>
                 </div>
             </section>
