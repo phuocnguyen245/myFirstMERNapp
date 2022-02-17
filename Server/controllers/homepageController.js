@@ -1,6 +1,7 @@
 
 import { Categories } from '../models/categoriesModel.js'
 import { Shops } from '../models/shopsModel.js'
+
 export const hompageApi = async (req, res) => {
     try {
         const categories = await Categories.find().limit(3)
@@ -10,6 +11,7 @@ export const hompageApi = async (req, res) => {
         console.log(error);
     }
 }
+
 export const homepageSearchApi = async (req, res) => {
     try {
         const query = req.query.q

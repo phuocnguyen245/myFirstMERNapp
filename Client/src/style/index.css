@@ -1,6 +1,6 @@
  @font-face {
     font-family: HelveticaNeuee;
-    src: url("../fonts/helveticaneue.ttf")
+    src: url("../../public/assets/fonts/helveticaneue.ttf")
 }
 * {
     box-sizing: border-box;

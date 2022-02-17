@@ -24,7 +24,7 @@ const LeftHomePage = ({ left, rightValue }) => {
       const scroll = window.scrollY
       if (scroll >= rightValue - window.innerHeight) {
         setAddAbsolute('content-container-left absolute')
-        setPlusHeight(rightValue - window.innerHeight)
+        setPlusHeight(rightValue - window.innerHeight - scroll)
       } else {
         setAddAbsolute('content-container-left')
         setPlusHeight(0)
@@ -35,7 +35,6 @@ const LeftHomePage = ({ left, rightValue }) => {
       window.removeEventListener('scroll', scroll)
     }
   })
-
   const dispatch = useDispatch()
   const handleSearch = (e) => {
     setSearchText(e.target.value)
