@@ -3,6 +3,7 @@ export const loginpageSlice = createSlice({
     name: 'loginpage',
     initialState: {
         user: null,
+        accessToken: null,
         status: 0
     },
     reducers: {
@@ -11,8 +12,8 @@ export const loginpageSlice = createSlice({
             state.status = 200
         },
         getUserInfoSuccess: (state, action) => {
-            state.user = action.payload
-            console.log(state.user);
+            state.user = action.payload.user
+            state.accessToken = action.payload.accessToken
         },
     }
 })

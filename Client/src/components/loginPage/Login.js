@@ -18,6 +18,8 @@ const Login = () => {
 
   const navigate = useNavigate()
   const user = useSelector(state => state.loginpage.user)
+  const token = useSelector(state => state.loginpage.accessToken)
+  token && localStorage.setItem('accessToken', JSON.stringify(token))
   useEffect(() => {
     if (user) {
       return navigate("/");

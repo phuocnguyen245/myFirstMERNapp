@@ -6,8 +6,11 @@ import {
     getSearchSuccess,
 } from '../../components/homepage/homePageSlice'
 import { getUserInfoSuccess } from '../../components/loginPage/loginSlice'
-function* getData(action) {
-    const homepageApi = yield call(() => axios.get('http://localhost:5000/api/homepage/'))
+function* getData() {
+    const header = localStorage.getItem('accessToken')
+    const homepageApi = yield call(() => axios.get('http://localhost:5000/api/homepage/',
+        { headers: { authorization: `Bearer ${JSON.parse(header)}` } }
+    ))
     const data = yield homepageApi.data
     yield put(getCategoriesSuccess(data.categories))
     yield put(getShopSuccess(data.shops))
@@ -21,7 +24,8 @@ function* searchData(action) {
 
 function* checkData(action) {
     const userApi = yield call(() => axios.post('http://localhost:5000/api/check-user', action.payload))
-    const data = yield userApi.data.user
+    const data = yield userApi.data
+    console.log(userApi.data);
     yield put(getUserInfoSuccess(data))
 }
 

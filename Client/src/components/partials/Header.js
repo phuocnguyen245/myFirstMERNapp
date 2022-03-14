@@ -1,6 +1,17 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 const Header = () => {
+  const user = useSelector(state => state.loginpage.user)
+  user && localStorage.setItem('account', JSON.stringify(user?.username))
+  const username = localStorage.getItem('account')
+
+  const navigage = useNavigate()
+  const handleClick = () => {
+    localStorage.removeItem('account');
+    localStorage.removeItem('accessToken')
+    window.location.href = '/login'
+  }
   return (
     <header id="header">
       <div className="container-header">
@@ -58,7 +69,10 @@ const Header = () => {
                 </div>
               </div>
               <div className="btn-login">
-                <NavLink to="/login" className="btn">Đăng nhập</NavLink>
+                {username ?
+                  <button onClick={handleClick} className="btn">Đăng xuất {JSON.parse(username)}</button> :
+                  <NavLink to="/login" className="btn">Đăng nhập</NavLink>
+                }
               </div>
             </div>
           </div>

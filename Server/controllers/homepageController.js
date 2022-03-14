@@ -2,6 +2,7 @@
 import { Categories } from '../models/categoriesModel.js'
 import { Shops } from '../models/shopsModel.js'
 import { Users } from '../models/usersModel.js'
+import { generateAccessToken } from '../middleware/auth/auth.js'
 export const hompageApi = async (req, res) => {
     try {
         const categories = await Categories.find().limit(3)
@@ -33,10 +34,9 @@ export const getProductById = async (req, res) => {
 
 export const addUser = async (req, res) => {
     try {
-        const newUser = new Users({
-
-        })
-        newUser.save()
+        const user = req.body
+        console.log(user);
+        res.send({ user })
     } catch (error) {
         console.log(error);
     }
@@ -44,11 +44,13 @@ export const addUser = async (req, res) => {
 
 export const checkUser = async (req, res) => {
     try {
-        // const user = await Users.findOne({ id: 1 })
-        // res.send({user})
-        // console.log(req.body);
         const user = await Users.findOne({ username: req.body.username, password: req.body.password })
-        res.send({ user })
+        if (user) {
+            const accessToken = generateAccessToken(user)
+            res.send({ user, accessToken })
+        } else {
+            res.status(400).send('Incorrect')
+        }
     } catch (error) {
         console.log(error);
     }
