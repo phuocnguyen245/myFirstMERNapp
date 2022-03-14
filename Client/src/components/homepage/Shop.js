@@ -1,9 +1,9 @@
 import React from 'react'
-
-const Shop = ({shopName, address, cost, img}) => {
+import { NavLink } from 'react-router-dom'
+const Shop = ({ shopName, address, cost, img, id }) => {
     return (
         <div className="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-4 p-1 right-item">
-            <a href="/#">
+            <NavLink to={`/product/${id}`}>
                 <img src={`./assets/img/${img}`} alt="" />
                 <div>
                     <div className="right-item__desc">
@@ -31,7 +31,7 @@ const Shop = ({shopName, address, cost, img}) => {
                         </div>
                     </div>
                 </div>
-            </a>
+            </NavLink>
         </div>
     )
 }

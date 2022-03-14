@@ -4,7 +4,7 @@ export const homePageSlice = createSlice({
     initialState: {
         categories: [],
         shops: [],
-        text:'',
+        text: '',
         searchData: []
     },
     reducers: {
@@ -35,7 +35,7 @@ export const {
     getHomepageDataFetch,
     getHomepageDataFailure,
     getSearchSuccess,
-    getSearchFetch 
+    getSearchFetch
 } = homePageSlice.actions
 
 export default homePageSlice.reducer

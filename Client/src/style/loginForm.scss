@@ -4,7 +4,7 @@ $blue: #0288d1;
 .login-form {
   margin-top: 70px;
   padding: 40px;
-  background: url(../img/main-banner.jpg);
+  background: url('../../public/assets/img/main-banner.jpg');
   height: 100vh;
   .login-container {
     width: calc(50% + 30px);
@@ -165,7 +165,7 @@ $blue: #0288d1;
   .login-form {
     margin: 0;
     padding: auto 20px;
-    background: url(../img/bg-login.jpg);
+    background: url('../../public/assets/img/bg-login.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: repeat;

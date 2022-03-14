@@ -1,7 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
-import { getCategoriesSuccess, getShopSuccess, getSearchSuccess } from '../../components/homepage/homePageSlice'
-
+import {
+    getCategoriesSuccess,
+    getShopSuccess,
+    getSearchSuccess,
+} from '../../components/homepage/homePageSlice'
+import { getUserInfoSuccess } from '../../components/loginPage/loginSlice'
 function* getData(action) {
     const homepageApi = yield call(() => axios.get('http://localhost:5000/api/homepage/'))
     const data = yield homepageApi.data
@@ -15,8 +19,15 @@ function* searchData(action) {
     yield put(getSearchSuccess(data.shops))
 }
 
+function* checkData(action) {
+    const userApi = yield call(() => axios.post('http://localhost:5000/api/check-user', action.payload))
+    const data = yield userApi.data.user
+    yield put(getUserInfoSuccess(data))
+}
+
 function* mySaga() {
     yield takeEvery('homepage/getHomepageDataFetch', getData)
     yield takeEvery('homepage/getSearchFetch', searchData)
+    yield takeEvery('loginpage/getUserInfoFetch', checkData)
 }
 export default mySaga;

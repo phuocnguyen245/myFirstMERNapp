@@ -12,3 +12,10 @@ export const searchData = (data) =>{
         payload: data
     }
 }
+
+export const checkLogin = data => {
+    return {
+        type: 'homepage/checkLogin',
+        payload: data
+    }
+}

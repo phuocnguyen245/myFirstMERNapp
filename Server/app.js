@@ -4,12 +4,14 @@ import cors from 'cors'
 import connect from './config/database.js'
 import dotenv from 'dotenv'
 import homepage from './routers/homepage.js'
+import jwt from 'jsonwebtoken'
 const app = express()
 const PORT = process.env.PORT || 5000
 app.use(bodyParser.json({ limit: '30mb' }))
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))
 app.use(cors())
 dotenv.config()
+
 
 // Connect db
 connect.connect()
