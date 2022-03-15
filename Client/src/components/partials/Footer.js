@@ -106,14 +106,14 @@ const Footer = () => {
                     <div className="footer-col col-md-2 col-sm-2 col-xl-2 p-0">
                         <h3>Ứng dụng ShopeeFood</h3>
                         <ul>
-                            <li><a href="/#"><img src="./assets/img/AppStore-vn.png" alt="" /></a></li>
-                            <li><a href="/#"><img src="./assets/img/PlayStore-vn.png" alt="" /></a></li>
-                            <li><a href="/#"><img src="./assets/img/Huawei-gallery-vn.png" alt="" /></a></li>
+                            <li><a href="/#"><img src="/assets/img/AppStore-vn.png" alt="" /></a></li>
+                            <li><a href="/#"><img src="/assets/img/PlayStore-vn.png" alt="" /></a></li>
+                            <li><a href="/#"><img src="/assets/img/Huawei-gallery-vn.png" alt="" /></a></li>
                         </ul>
                     </div>
                     <div className="footer-col col-md-2 col-sm-1 col-xl-2 p-0">
                         <ul>
-                            <li><img src="./assets/img/Logo-ShopeefoodVN.png" alt="" /></li>
+                            <li><img src="/assets/img/Logo-ShopeefoodVN.png" alt="" /></li>
                             <li>© 2021 ShopeeFood</li>
                             <div className="row">
                                 <li><a href="/#"><i className="fa fa-facebook-official" /></a></li>
@@ -132,7 +132,7 @@ const Footer = () => {
                             <li>sửa đổi lần thứ 23, ngày 10/12/2020</li>
                             <li>Số điện thoại: 1900 2042</li>
                             <li>Email: info@shopeefood.vn</li>
-                            <li><img src="./assets/img/gov_seals1.jpg" alt="" /></li>
+                            <li><img src="/assets/img/gov_seals1.jpg" alt="" /></li>
                         </ul>
                     </div>
                 </div>

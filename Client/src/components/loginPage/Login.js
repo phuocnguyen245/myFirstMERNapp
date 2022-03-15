@@ -1,12 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { yupResolver } from "@hookform/resolvers/yup"
+import React, { useEffect } from 'react'
+import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import * as yup from "yup"
 import { getUserInfoFetch } from '../../components/loginPage/loginSlice'
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -42,6 +40,7 @@ const Login = () => {
   }
 
   return (
+    
     <div className="login-form">
       <div className="container">
         <div className="login-container">

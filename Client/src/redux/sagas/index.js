@@ -1,19 +1,19 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import {
-    getCategoriesSuccess,
-    getShopSuccess,
-    getSearchSuccess,
+    getCategoriesSuccess, getSearchSuccess, getShopSuccess
 } from '../../components/homepage/homePageSlice'
 import { getUserInfoSuccess } from '../../components/loginPage/loginSlice'
 function* getData() {
     const header = localStorage.getItem('accessToken')
-    const homepageApi = yield call(() => axios.get('http://localhost:5000/api/homepage/',
-        { headers: { authorization: `Bearer ${JSON.parse(header)}` } }
-    ))
-    const data = yield homepageApi.data
-    yield put(getCategoriesSuccess(data.categories))
-    yield put(getShopSuccess(data.shops))
+    if (header) {
+        const homepageApi = yield call(() => axios.get('http://localhost:5000/api/homepage/',
+            { headers: { authorization: `Bearer ${JSON.parse(header)}` } }
+        ))
+        const data = yield homepageApi.data
+        yield put(getCategoriesSuccess(data.categories))
+        yield put(getShopSuccess(data.shops))
+    }
 }
 
 function* searchData(action) {

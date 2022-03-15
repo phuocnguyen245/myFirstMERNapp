@@ -1,12 +1,11 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 const Header = () => {
   const user = useSelector(state => state.loginpage.user)
   user && localStorage.setItem('account', JSON.stringify(user?.username))
   const username = localStorage.getItem('account')
 
-  const navigage = useNavigate()
   const handleClick = () => {
     localStorage.removeItem('account');
     localStorage.removeItem('accessToken')

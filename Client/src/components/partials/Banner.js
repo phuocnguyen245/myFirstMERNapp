@@ -11,7 +11,7 @@ const Banner = () => {
                             đường đi một cách tốt nhất.</p>
                     </div>
                     <div className="banner-container__img">
-                        <img src="./assets/img/banner1.png" alt="" />
+                        <img src="/assets/img/banner1.png" alt="" />
                     </div>
                 </div>
             </section>
@@ -27,7 +27,7 @@ const Banner = () => {
                         <p>Đăng ký tham gia: <b>tại đây</b></p>
                     </div>
                     <div className="banner-container__img">
-                        <img className="img-absolute" src="./assets/img/banner2.png" alt="" />
+                        <img className="img-absolute" src="/assets/img/banner2.png" alt="" />
                     </div>
                 </div>
             </section>
@@ -44,7 +44,7 @@ const Banner = () => {
                             qua số điện thoại (028) 7109 9179.</p>
                     </div>
                     <div className="banner-container__img">
-                        <img className="img-absolute2" src="./assets/img/banner3.png" alt="" />
+                        <img className="img-absolute2" src="/assets/img/banner3.png" alt="" />
                     </div>
                 </div>
             </section>
