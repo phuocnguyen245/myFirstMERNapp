@@ -44,12 +44,16 @@ export const addUser = async (req, res) => {
 
 export const checkUser = async (req, res) => {
     try {
-        const user = await Users.findOne({ username: req.body.username, password: req.body.password })
-        if (user) {
-            const accessToken = generateAccessToken(user)
-            res.send({ user, accessToken })
-        } else {
-            res.status(400).send('Incorrect')
+        if (req.body) {
+            const { username, password } = req.body
+            const user = await Users.findOne({ username, password })
+
+            if (user) {
+                const accessToken = generateAccessToken(user)
+                res.send({ user, accessToken })
+            } else {
+                res.status(400).send('Wrong')
+            }
         }
     } catch (error) {
         console.log(error);

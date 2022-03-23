@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style/index.css'
-import './style/main.scss';
-import './style/loginForm.scss'
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
-import store from './redux/store';
-import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import reportWebVitals from './reportWebVitals';
-import Login from './components/loginPage/Login';
 import HomePage from './components/homepage/HomePage';
+import Login from './components/loginPage/Login';
 import Shop from './components/shop/Shop';
+import store from './redux/store';
+import reportWebVitals from './reportWebVitals';
+import './style/index.css';
+import './style/loginForm.scss';
+import './style/main.scss';
 
 
 ReactDOM.render(

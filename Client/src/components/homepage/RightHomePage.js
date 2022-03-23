@@ -5,9 +5,9 @@ const RightHomePage = ({ right }) => {
 
     useEffect(() => {
         const onLoad = () => {
-            setTimeout(() =>{
+            setTimeout(() => {
                 right(rightRef.current.getBoundingClientRect().height)
-            },500)
+            }, 500)
         }
         window.addEventListener('load', onLoad)
         return () => {

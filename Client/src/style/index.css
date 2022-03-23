@@ -1,69 +1,70 @@
- @font-face {
-    font-family: HelveticaNeuee;
-    src: url("../../public/assets/fonts/helveticaneue.ttf")
+@font-face {
+  font-family: HelveticaNeuee;
+  src: url("../../public/assets/fonts/helveticaneue.ttf");
 }
 * {
-    box-sizing: border-box;
-    font-family: HelveticaNeuee;
-    letter-spacing: 0.5px;
-    color: #252525;
+  box-sizing: border-box;
+  font-family: HelveticaNeuee;
+  letter-spacing: 0.5px;
+  color: #252525;
 }
-.flex{
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-}
-
-html, body {
-    overflow-x: hidden;
-    line-height: 1.6rem;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-.shopeefoodlogo{
-    height:30px;
-}
-.dropdown-item{
-    width: unset;
+.flex {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.container{
-    width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 !important;
+html,
+body {
+  overflow-x: hidden;
+  line-height: 1.6rem;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
-.active-color{
-    display: none;
-    height: calc(100% - 4px);
-    border-bottom: 4px solid  #f14d2d !important;
-    font-weight: bold;
+.shopeefoodlogo {
+  height: 30px;
 }
-.active-color p{
-    color: #f14d2d;
+.dropdown-item {
+  width: unset;
 }
-.primary-color{
-    color: #f14d2d;
+
+.container {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 !important;
 }
-.fz-14{
-    font-size: 14px;
+.active-color {
+  display: none;
+  height: calc(100% - 4px);
+  border-bottom: 4px solid #f14d2d !important;
+  font-weight: bold;
 }
-.t-w{
-    color: #fff;
+.active-color p {
+  color: #f14d2d;
 }
-.absolute{
-    position: absolute;
+.primary-color {
+  color: #f14d2d;
 }
-.block{
-    display: block;
+.fz-14 {
+  font-size: 14px;
 }
-.show{
-    left: unset !important;
+.t-w {
+  color: #fff;
+}
+.absolute {
+  position: absolute;
+}
+.block {
+  display: block;
+}
+.show {
+  left: unset !important;
 }
 section .right-wrapper {
-    background-color: #fff;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    padding: 12px 30px;
-    border-radius: 4px;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 12px 30px;
+  border-radius: 4px;
 }

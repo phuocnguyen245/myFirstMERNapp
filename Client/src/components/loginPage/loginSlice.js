@@ -14,12 +14,16 @@ export const loginpageSlice = createSlice({
         getUserInfoSuccess: (state, action) => {
             state.user = action.payload.user
             state.accessToken = action.payload.accessToken
+            state.status = 200
         },
+        getUserInfoFailure: (state, action) => {
+            state.status = action.payload
+        }
     }
 })
 
 export const {
-    getUserInfoFetch, getUserInfoSuccess
+    getUserInfoFetch, getUserInfoSuccess, getUserInfoFailure
 } = loginpageSlice.actions
 
 export default loginpageSlice.reducer

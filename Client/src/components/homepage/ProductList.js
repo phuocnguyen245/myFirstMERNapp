@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { categoriesSelector, shopsSelector } from '../../redux/selector'
 import { getHomepageDataFetch } from './homePageSlice'
 import Shop from './Shop'

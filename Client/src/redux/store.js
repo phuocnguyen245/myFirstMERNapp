@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import homePageSlice from '../components/homepage/homePageSlice'
-import loginpageSlice from '../components/loginPage/loginSlice'
 import createSagaMiddleware from 'redux-saga';
+import homePageSlice from '../components/homepage/homePageSlice';
+import loginpageSlice from '../components/loginPage/loginSlice';
 import mySaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware()

@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, take, takeEvery } from 'redux-saga/effects'
 import {
     getCategoriesSuccess, getSearchSuccess, getShopSuccess
 } from '../../components/homepage/homePageSlice'
-import { getUserInfoSuccess } from '../../components/loginPage/loginSlice'
+import { getUserInfoSuccess, getUserInfoFailure } from '../../components/loginPage/loginSlice'
 function* getData() {
     const header = localStorage.getItem('accessToken')
     if (header) {
@@ -23,10 +23,13 @@ function* searchData(action) {
 }
 
 function* checkData(action) {
-    const userApi = yield call(() => axios.post('http://localhost:5000/api/check-user', action.payload))
-    const data = yield userApi.data
-    console.log(userApi.data);
-    yield put(getUserInfoSuccess(data))
+    try {
+        const userApi = yield call(() => axios.post('http://localhost:5000/api/check-user', action.payload))
+        const data = yield userApi.data
+        yield put(getUserInfoSuccess(data))
+    } catch (error) {
+        yield put(getUserInfoFailure(400));
+    }
 }
 
 function* mySaga() {

@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSearchFetch } from './homePageSlice'
 import { categoriesSelector } from '../../redux/selector'
+import { getSearchFetch } from './homePageSlice'
 import SearchBar from './SearchBar'
 const LeftHomePage = ({ left, rightValue }) => {
   const [addAbsolute, setAddAbsolute] = useState('content-container-left')
@@ -11,6 +11,7 @@ const LeftHomePage = ({ left, rightValue }) => {
   const typingTimeoutRef = useRef(null)
   useEffect(() => {
     const onLoad = () => {
+
       left(leftRef.current.getBoundingClientRect().height)
     }
     window.addEventListener('load', onLoad)
@@ -34,7 +35,7 @@ const LeftHomePage = ({ left, rightValue }) => {
     return () => {
       window.removeEventListener('scroll', scroll)
     }
-  })
+  }, [rightValue])
   const dispatch = useDispatch()
   const handleSearch = (e) => {
     setSearchText(e.target.value)

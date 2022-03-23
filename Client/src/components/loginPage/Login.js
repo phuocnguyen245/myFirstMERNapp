@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -7,22 +7,30 @@ import * as yup from "yup"
 import { getUserInfoFetch } from '../../components/loginPage/loginSlice'
 
 const schema = yup.object().shape({
-  username: yup.string().required(),
-  password: yup.string().min(4, 'Password co 4 ky tu tro len').required()
+  username: yup.string().required('Không được để trống Username'),
+  password: yup.string().min(4, 'Password có 4 ký tự trở lên')
+    .matches(/[a-zA-Z]/, 'Không được dùng ký tự đặc biệt').required()
 })
 
 const Login = () => {
+  const [alert, setAlert] = useState(false)
+  
+  const { user } = useSelector(state => state.loginpage)
+  const { status } = useSelector(state => state.loginpage)
+
   const dispatch = useDispatch()
 
-  const navigate = useNavigate()
-  const user = useSelector(state => state.loginpage.user)
   const token = useSelector(state => state.loginpage.accessToken)
   token && localStorage.setItem('accessToken', JSON.stringify(token))
+
+  const navigate = useNavigate()
   useEffect(() => {
     if (user) {
       return navigate("/");
     }
-  }, [user, navigate]);
+    if (status !== 400) return
+    setAlert(true)
+  }, [status, user, navigate]);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
@@ -31,16 +39,12 @@ const Login = () => {
       password: ''
     }
   })
-
-  const submitForm = (data) => {
+  console.log(alert);
+  const submitForm = async (data) => {
     dispatch(getUserInfoFetch(data))
-    if (!user) {
-      console.log('hihi');
-    }
   }
 
   return (
-    
     <div className="login-form">
       <div className="container">
         <div className="login-container">
@@ -67,15 +71,14 @@ const Login = () => {
                 className="form-control"
                 {...register("username")}
               />
-              {errors?.username && <span role="alert" className="form-message">{errors.username?.message}</span>}
             </div>
             <div className="form-group">
               <input id="password" type="password"
                 placeholder="Password" className="form-control"
                 {...register("password")} />
               <i className="fas fa-lock" />
-              {errors?.password && <span role="alert" className="form-message">{errors.password?.message}</span>}
             </div>
+
             <div className="form-group row justify-content-between">
               <div className="row align-items-center">
                 <input type="checkbox" name="checked" id="checked-login" defaultChecked />
@@ -83,6 +86,13 @@ const Login = () => {
               </div>
               <Link to="#" className="m-0">Quên mật khẩu?</Link>
             </div>
+            {(errors?.username || errors?.password) && <div className="login-alert">
+              {errors?.username && <span className="block" style={{ color: '#a94442' }}>{errors.username?.message}</span>}
+              {errors?.password && <span className="block" style={{ color: '#a94442' }}>{errors.password?.message}</span>}
+            </div>}
+            {alert && <div className="login-alert">
+              <span className="block" style={{ color: '#a94442' }}>Sai username or password</span>
+            </div>}
             <button className="form-submit">Đăng Nhập</button>
           </form>
           <div className="login-policy">

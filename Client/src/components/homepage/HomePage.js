@@ -1,7 +1,6 @@
-import React from 'react'
-import LeftHomePage from './LeftHomePage'
-import RightHomePage from './RightHomePage'
-import { useState } from 'react';
+import React, { useState } from 'react';
+import LeftHomePage from './LeftHomePage';
+import RightHomePage from './RightHomePage';
 
 const HomePage = () => {
 
