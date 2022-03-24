@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 
 const Login = () => {
   const [alert, setAlert] = useState(false)
-  
+
   const { user } = useSelector(state => state.loginpage)
   const { status } = useSelector(state => state.loginpage)
 
@@ -39,7 +39,7 @@ const Login = () => {
       password: ''
     }
   })
-  console.log(alert);
+  
   const submitForm = async (data) => {
     dispatch(getUserInfoFetch(data))
   }
