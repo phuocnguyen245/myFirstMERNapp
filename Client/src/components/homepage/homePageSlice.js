@@ -10,10 +10,10 @@ export const homePageSlice = createSlice({
     reducers: {
         //HomePage data
         getCategoriesSuccess: (state, action) => {
-            state.categories = action.payload
+            state.categories = action.payload.categories
         },
-        getShopSuccess: (state, action) => {
-            state.shops = action.payload
+        getShopsSuccess: (state, action) => {
+            state.shops = action.payload.shops
         },
         getHomepageDataFetch: (state, action) => {
             state.text = action.payload
@@ -30,7 +30,7 @@ export const homePageSlice = createSlice({
 })
 
 export const {
-    getShopSuccess,
+    getShopsSuccess,
     getCategoriesSuccess,
     getHomepageDataFetch,
     getHomepageDataFailure,

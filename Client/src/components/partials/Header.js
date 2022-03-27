@@ -1,76 +1,85 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, NavLink } from 'react-router-dom'
+import { getHomepageDataFetch } from '../homepage/homePageSlice'
 const Header = () => {
+  const dispatch = useDispatch()
+  const [clickLink, setClickClick] = useState()
+  
   const user = useSelector(state => state.loginpage.user)
+  const categories = useSelector(state => state.homepage.categories)
   user && localStorage.setItem('account', JSON.stringify(user?.username))
   const username = localStorage.getItem('account')
 
-  const handleClick = () => {
+  const handleClick = async () => {
     localStorage.removeItem('account');
     localStorage.removeItem('accessToken')
+    await axios.get('http://localhost:5000/api/login/logout', { withCredentials: true })
     window.location.href = '/login'
   }
+
+  useEffect(() => {
+    dispatch(getHomepageDataFetch())
+  }, [dispatch])
+
+  const length = useSelector(state => state.shop.length)
+  console.log(length);
+
   return (
     <header id="header">
       <div className="container-header">
         <div className="container p-2">
           <div className="row p-2 justify-content-between align-items-center">
+            <div className="col-2 p-0">
+              <Link to="/">
+                <img className="shopeefoodlogo" src="/assets/img/shopeefoodvn.png" alt="" />
+              </Link>
+            </div>
+            <div className="dropdown">
+              <button className="btn btn-light dropdown-toggle fz-14" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Đà Nẵng
+              </button>
+              <div className="dropdown-menu" style={{ left: "unset !important" }}
+                aria-labelledby="dropdownMenuButton">
+                <Link to="/" className="dropdown-item bg-light">
+                  <span>Hà Nội</span>
+                  <span>1000000 địa điểm</span>
+                </Link>
+
+                <Link to="/" className="dropdown-item bg-light">
+                  <span>TP. HCM</span>
+                  <span>1 địa điểm</span>
+                </Link>
+                <Link to="/" className="dropdown-item bg-light">
+                  <span>Hải Phòng</span>
+                  <span>1 địa điểm</span>
+                </Link>
+              </div>
+            </div>
             <nav className="flex justify-content-start">
-              <div className="nav-item active-color">
-                <a href="/#">
-                  <img style={{ display: 'none' }} src="./assets/img/imgsmall1.png" alt="" />
-                  <p>Đồ ăn</p>
-                </a>
-              </div>
-              <div className="nav-item">
-                <a href="/#">
-                  <img style={{ display: 'none' }} src="./assets/img/imgsmall2.png" alt="" />
-                  <p>Thực phẩm</p>
-                </a>
-              </div>
-              <div className="nav-item">
-                <a href="/#">
-                  <img style={{ display: 'none' }} src="./assets/img/imgsmall3.png" alt="" />
-                  <p>Bia</p>
-                </a>
-              </div>
-              <div className="nav-item">
-                <a href="/#">
-                  <img style={{ display: 'none' }} src="./assets/img/imgsmall4.png" alt="" />
-                  <p>Hoa</p>
-                </a>
-              </div>
-              <div className="nav-item">
-                <a href="/#">
-                  <img style={{ display: 'none' }} src="./assets/img/imgsmall5.png" alt="" />
-                  <p>Siêu thị</p>
-                </a>
-              </div>
-              <div className="nav-item">
-                <a href="/#">
-                  <img style={{ display: 'none' }} src="./assets/img/imgsmall6.png" alt="" />
-                  <p>Thuốc</p>
-                </a>
-              </div>
-              <div className="nav-item">
-                <a href="/#">
-                  <img style={{ display: 'none' }} src="./assets/img/imgsmall7.png" alt="" />
-                  <p>Thú cưng</p>
-                </a>
-              </div>
+              {categories.map(category => (
+                <div className="nav-item" key={category._id}>
+                  <NavLink to="/" className={clickLink === category._id && 'active-link'} onClick={() => setClickClick(category._id)}>
+                    <img style={{ display: 'none' }} src="./assets/img/imgsmall1.png" alt="" />
+                    <p>{category.name}</p>
+                  </NavLink>
+                </div>
+              ))}
             </nav>
             <div className="col-2 flex align-items-center justify-content-end">
               <div className="btn-search pr-3">
                 <i className="fas fa-shopping-cart" />
                 <div className="qty">
-                  <p>0</p>
+                  <p>{length}</p>
                 </div>
               </div>
               <div className="btn-login">
                 {username ?
                   <button onClick={handleClick} className="btn">Đăng xuất {JSON.parse(username)}</button> :
-                  <NavLink to="/login" className="btn">Đăng nhập</NavLink>
+                  <Link to="/login" className="btn">Đăng nhập</Link>
                 }
               </div>
             </div>

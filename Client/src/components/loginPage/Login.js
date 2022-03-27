@@ -39,9 +39,13 @@ const Login = () => {
       password: ''
     }
   })
-  
-  const submitForm = async (data) => {
+
+  const submitForm = (data) => {
     dispatch(getUserInfoFetch(data))
+  }
+
+  const handleChange = () => {
+    setAlert(false)
   }
 
   return (
@@ -64,18 +68,25 @@ const Login = () => {
             </div>
           </div>
           <p className="p-title">Hoặc đăng nhập bằng tài khoản của bạn</p>
+          {(errors?.username || errors?.password) && <div className="login-alert">
+            {errors?.username && <span className="block" style={{ color: '#a94442' }}>{errors.username?.message}</span>}
+            {errors?.password && <span className="block" style={{ color: '#a94442' }}>{errors.password?.message}</span>}
+          </div>}
+          {alert && <div className="login-alert">
+            <span className="block" style={{ color: '#a94442' }}>Sai username or password</span>
+          </div>}
           <form onSubmit={handleSubmit(submitForm)} className="form" id="form-1">
             <div className="form-group">
               <i className="far fa-envelope" />
               <input id="username" type="text" placeholder="Username or Email"
                 className="form-control"
-                {...register("username")}
+                {...register("username", { onChange: () => handleChange() })}
               />
             </div>
             <div className="form-group">
               <input id="password" type="password"
                 placeholder="Password" className="form-control"
-                {...register("password")} />
+                {...register("password", { onChange: () => handleChange() })} />
               <i className="fas fa-lock" />
             </div>
 
@@ -86,13 +97,6 @@ const Login = () => {
               </div>
               <Link to="#" className="m-0">Quên mật khẩu?</Link>
             </div>
-            {(errors?.username || errors?.password) && <div className="login-alert">
-              {errors?.username && <span className="block" style={{ color: '#a94442' }}>{errors.username?.message}</span>}
-              {errors?.password && <span className="block" style={{ color: '#a94442' }}>{errors.password?.message}</span>}
-            </div>}
-            {alert && <div className="login-alert">
-              <span className="block" style={{ color: '#a94442' }}>Sai username or password</span>
-            </div>}
             <button className="form-submit">Đăng Nhập</button>
           </form>
           <div className="login-policy">
@@ -102,7 +106,6 @@ const Login = () => {
         </div>
       </div>
     </div>
-
   )
 }
 

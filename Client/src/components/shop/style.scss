@@ -44,7 +44,59 @@
       text-transform: capitalize;
     }
     .shop-detail__address {
+      font-size: 15px;
+    }
+    .shop-detail__price {
+      p {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0288d1;
+      }
+    }
+    .shop-detail__order {
+      .shop-detail__qty {
+        gap: 8px;
+        margin-bottom: 8px;
+        .qty {
+          font-size: 20px;
+          margin-bottom: 4px;
+          max-width: 30px;
+          width: 30px;
+          text-align: center;
+        }
+        .counter__btn {
+          font-size: 20px;
+          cursor: pointer;
+          font-weight: 700;
+          line-height: 20px;
+          width: 22px;
+          height: 22px;
+          background-color: #ee4d2d;
+          padding: 4px;
+          color: #fff;
+        }
+      }
+      .shop-detail__bill {
+        span {
+          margin-right: 12px;
+        }
+        .shop-detail__total {
+          font-size: 16px;
+          font-weight: 700;
+          color: #0288d1;
+          margin-bottom: 12px;
+        }
+      }
+      .shop-detail__btn {
         font-size: 15px;
+        display: block;
+        width: calc(100% - 20px);
+        background-color: #ee4d2d;
+        color: #fff;
+        border-color: #ee4d2d;
+        outline: none;
+        cursor: pointer;
+      }
     }
   }
 }

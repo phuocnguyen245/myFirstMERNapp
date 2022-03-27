@@ -48,7 +48,6 @@ const LeftHomePage = ({ left, rightValue }) => {
   }
 
   const categories = useSelector(categoriesSelector)
-
   return (
     <div ref={leftRef} className={addAbsolute} style={{ top: `${plusHeight}px` }}>
       <div className="container">

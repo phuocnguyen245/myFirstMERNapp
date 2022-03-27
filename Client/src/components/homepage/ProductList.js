@@ -7,10 +7,12 @@ import Shop from './Shop'
 const ProductList = () => {
     const categories = useSelector(categoriesSelector)
     const shops = useSelector(shopsSelector)
+    
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getHomepageDataFetch())
     }, [dispatch])
+
     return (
         categories.map(category => {
             return <section key={category._id} className="right-wrapper">

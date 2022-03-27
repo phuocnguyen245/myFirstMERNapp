@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 const Shop = ({ shopName, address, cost, img, id }) => {
     return (
         <div className="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-4 p-1 right-item">
-            <NavLink to={`/product/${id}`}>
+            <NavLink to={`/product/${id}`} target="_blank">
                 <img src={`./assets/img/${img}`} alt="" />
                 <div>
                     <div className="right-item__desc">
@@ -15,17 +15,17 @@ const Shop = ({ shopName, address, cost, img, id }) => {
                             <i className="fas fa-tag pr-1 " />
                             <p className="m-0">{cost}</p>
                         </div>
-                        <div className="flex justify-content-start align-center pl-1 pr-1">
+                        <div className="flex justify-content-start align-items-center pl-1 pr-1">
                             <i className="fa fa-dollar pr-1" />
                             <p className="m-0">Giá 40k</p>
                         </div>
                     </div>
                     <div className="row flex justify-content-start flex-nowrap right-item__disc">
-                        <div className="flex justify-content-start align-center mr-1">
+                        <div className="flex justify-content-start align-items-center mr-1">
                             <i className="fas fa-tag pl-1" />
                             <p className="m-0 pr-1">Mã giảm 20k</p>
                         </div>
-                        <div className="flex justify-content-start align-center">
+                        <div className="flex justify-content-start align-items-center">
                             <i className="fas fa-motorcycle pl-1 pr-1" />
                             <p className="m-0 pr-1">Giá 20k</p>
                         </div>

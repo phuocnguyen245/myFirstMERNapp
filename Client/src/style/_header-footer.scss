@@ -7,7 +7,9 @@ header {
     z-index: 99;
     background-color: #fff;
     height: 60px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 2px 0
+        rgba(0, 0, 0, 0.2),
+      0 4px 15px 0 rgba(0, 0, 0, 0.19);
     .container {
       .dropdown {
         button {
@@ -17,7 +19,8 @@ header {
           padding: 0;
           border-radius: 4px;
           .dropdown-item {
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid
+              #ccc;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -37,7 +40,8 @@ header {
         display: flex;
         cursor: pointer;
         padding: 10px 12px;
-        border-bottom: 4px solid transparent;
+        border-bottom: 4px solid
+          transparent;
         a {
           color: $primary-textColor;
           height: fit-content;
@@ -51,6 +55,12 @@ header {
             margin: 0;
           }
         }
+        .active-link {
+          p {
+            color: #f14d2d;
+            font-weight: bold;
+          }
+        }
       }
       .btn-search {
         cursor: pointer;
@@ -60,14 +70,14 @@ header {
         &:hover {
           color: $primary-color;
         }
-        .qty{
-          position:absolute;
+        .qty {
+          position: absolute;
           top: -10px;
           right: 5px;
           padding: 0 6px;
-          border-radius:50%;
+          border-radius: 50%;
           background: #f14d2d;
-          p{
+          p {
             margin-bottom: 0 !important;
             color: #fff;
             font-size: 12px;
@@ -78,11 +88,13 @@ header {
         .btn {
           color: $primary-color;
           background: #fff;
-          border: 1px solid $primary-color;
+          border: 1px solid
+            $primary-color;
           box-shadow: none;
           outline: none;
           &:hover {
-            box-shadow: 2px 2px 4px $primary-color;
+            box-shadow: 2px 2px 4px
+              $primary-color;
           }
         }
       }
@@ -202,8 +214,9 @@ footer {
         max-width: 100% !important;
         margin: 0 !important;
         padding: 0 20px;
-        .btn-search, .btn-login{
-          display:none;
+        .btn-search,
+        .btn-login {
+          display: none;
         }
         .row {
           margin: 0 !important;
@@ -214,7 +227,7 @@ footer {
       }
     }
   }
-  footer{
+  footer {
     padding-bottom: 60px;
   }
 }
