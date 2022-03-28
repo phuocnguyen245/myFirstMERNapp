@@ -33,12 +33,7 @@
     display: none;
   }
   .content-container-right {
-    // background: url("../img/verticalImage.jpg");
-    // background-size: cover;
-    // overflow: hidden;
-    // top: 60px;
-    // right: -10px;
-    // left: 0;
+    background: url("../../public/assets/img/main-banner.jpg");
     .container {
       .right {
         width: 100% !important;
@@ -125,7 +120,8 @@
                     display: flex !important;
                     margin-left: -10px;
                     div {
-                      border: 1px solid #ccc;
+                      border: 1px solid
+                        #ccc;
                       border-radius: 20px;
                       background: #f8f8f8f8;
                       i {
@@ -170,7 +166,7 @@
   .scroll-to-top {
     display: none !important;
   }
-  .active-color{
+  .active-color {
     display: none !important;
   }
 }

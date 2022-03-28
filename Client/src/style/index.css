@@ -5,9 +5,11 @@
 * {
   box-sizing: border-box;
   font-family: HelveticaNeuee;
-  letter-spacing: 0.5px;
-  /* color: #252525; */
 }
+.default-color {
+  color: #252525;
+}
+
 .flex {
   display: flex !important;
   justify-content: space-between;

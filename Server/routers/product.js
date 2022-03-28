@@ -3,7 +3,7 @@ import { getProductById } from '../controllers/homepageController.js';
 
 const router = express.Router()
 
-router.get('/:id', getProductById)
+router.get('/:slug', getProductById)
 
 
 export default router;

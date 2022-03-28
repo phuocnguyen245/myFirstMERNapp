@@ -1,13 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-const Shop = ({ shopName, address, cost, img, id }) => {
+const Shop = ({ shopName, address, cost, img, slug }) => {
     return (
         <div className="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-4 p-1 right-item">
-            <NavLink to={`/product/${id}`} target="_blank">
+            <NavLink to={`/product/${slug}`} target="_blank">
                 <img src={`./assets/img/${img}`} alt="" />
                 <div>
                     <div className="right-item__desc">
-                        <p className="m-0" title={shopName}>{shopName}</p>
+                        <p className="m-0 default-color" title={shopName}>{shopName}</p>
                         <p className="m-0" title={address}>{address}</p>
                     </div>
                     <div className="row flex justify-content-start flex-nowrap ml-1 right-item__disc">

@@ -1,5 +1,6 @@
 import jwt_decode from "jwt-decode";
 import { CartItem } from "../models/cartModel.js";
+import { Shops } from "../models/shopsModel.js";
 export const renderCart = async (req, res) => {
     const { accessToken } = req.body
     try {
@@ -17,9 +18,11 @@ export const renderCart = async (req, res) => {
 
 export const addToCart = async (req, res) => {
     try {
-        const { product_ID, qty, accessToken } = req.body
-        const { id } = jwt_decode(accessToken)
-        const isHave = await CartItem.find({ product_ID })
+        const { slug, qty, accessToken } = req.body
+        const { id: user_ID } = jwt_decode(accessToken)
+        const shop = await Shops.find({ slug })
+        const { _id: shopID } = shop.find(s => s._id)
+        const isHave = await CartItem.find({ product_ID: shopID })
         if (isHave.length === 1) {
             const cartItemID = isHave.map(item => item._id)
             const quantity = isHave.map(item => item.qty)
@@ -27,10 +30,10 @@ export const addToCart = async (req, res) => {
             await cartItem.save()
         } else {
             const cartItem = new CartItem({
-                product_ID, qty, user_ID: id
+                product_ID: shopID, qty, user_ID
             })
             await cartItem.save()
-            const cartItems = await CartItem.find({ user_ID: id })
+            const cartItems = await CartItem.find({ user_ID })
             res.send({ length: cartItems.length })
         }
     } catch (error) {

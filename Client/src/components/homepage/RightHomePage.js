@@ -1,19 +1,20 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ProductList from './ProductList'
-const RightHomePage = ({ right }) => {
-    const rightRef = useRef()
+const RightHomePage = () => {
 
+    const rightRef = useRef()
     useEffect(() => {
         const onLoad = () => {
             setTimeout(() => {
-                right(rightRef.current.getBoundingClientRect().height)
+                const rightHeight = rightRef.current.getBoundingClientRect().height
+                localStorage.setItem('rightHeight', rightHeight)
             }, 500)
         }
         window.addEventListener('load', onLoad)
         return () => {
             window.removeEventListener('load', onLoad)
         }
-    }, [right])
+    }, [])
 
     return (
         <div ref={rightRef} className="content-container-right clearfix">
