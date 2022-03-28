@@ -8,10 +8,12 @@ const HomePage = () => {
 
     const [leftValue, setLeftValue] = useState(0)
     const [rightValue, setRightValue] = useState(0)
+    
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getHomepageDataFetch())
     }, [dispatch])
+
     const left = (left) => {
         setLeftValue(() => left)
     }

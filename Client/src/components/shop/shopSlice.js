@@ -12,19 +12,32 @@ export const shopSlice = createSlice({
             state.status = action.payload
         },
         addToCartSuccess: (state, action) => {
-            state.cartItem = action.payload
+            state.length = action.payload.length
         },
         addToCartFailure: (state, action) => {
             state.status = action.payload
         },
-        // handle 
+        getCartItemFetch: (state, action) => {
+            state.status = action.payload
+        },
+        getCartItemSuccess: (state, action) => {
+            state.length = action.payload.length
+            state.cartItem = action.payload
+        },
+        getCartItemFailure: (state, action) => {
+            state.status = action.payload
+        }
     }
 })
 
 export const {
     addToCartFetch,
     addToCartSuccess,
-    addToCartFailure
+    addToCartFailure,
+    //
+    getCartItemFetch,
+    getCartItemSuccess,
+    getCartItemFailure
 } = shopSlice.actions
 
 export default shopSlice.reducer

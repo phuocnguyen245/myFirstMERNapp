@@ -9,6 +9,7 @@ export const hompageApi = async (req, res) => {
         const categories = await Categories.find().limit(3)
         const shops = await Shops.find()
         res.send({ categories, shops })
+
     } catch (error) {
         console.log(error);
     }
@@ -37,24 +38,12 @@ export const getProductById = async (req, res) => {
 export const addUser = async (req, res) => {
     try {
         const user = req.body
-        console.log(user);
         res.send({ user })
     } catch (error) {
         console.log(error);
     }
 }
-export const saveJWTToCookie = (req, res) => {
-    // Our token expires after one day
-    const oneDayToSeconds = 24 * 60 * 60;
-    res.cookie('accessToken', accessToken,
-        {
-            maxAge: oneDayToSeconds,
-            // You can't access these tokens in the client's javascript
-            httpOnly: true,
-            // Forces to use https in production
-            secure: process.env.NODE_ENV === 'production' ? true : false
-        });
-};
+
 export const checkUser = async (req, res) => {
     try {
         if (req.body) {
@@ -63,11 +52,6 @@ export const checkUser = async (req, res) => {
             const user = await Users.findOne({ username, password })
             if (user) {
                 const accessToken = generateAccessToken(user)
-                res.cookie('accessToken', accessToken, {
-                    maxAge: 3600 * 1000,
-                    httpOnly: true,
-                    secure: true
-                })
                 res.send({ user, accessToken })
             } else {
                 res.status(400).send('Wrong')
@@ -77,10 +61,11 @@ export const checkUser = async (req, res) => {
         console.log(error);
     }
 }
+
 export const logout = async (req, res) => {
     try {
         res.clearCookie('accessToken')
-        res.send('oke')
+        res.send('Logout successful')
     } catch (error) {
         console.log(error);
     }

@@ -1,8 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup"
+import Cookies from "js-cookie"
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import * as yup from "yup"
 import { getUserInfoFetch } from '../../components/loginPage/loginSlice'
 
@@ -20,15 +23,28 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
+  // get Token and save to cookie
   const token = useSelector(state => state.loginpage.accessToken)
-  token && localStorage.setItem('accessToken', JSON.stringify(token))
+  token && Cookies.set('accessToken', token, {
+    expires: 1 / 12,
+    secure: true
+  })
 
   const navigate = useNavigate()
   useEffect(() => {
     if (user) {
-      return navigate("/");
+      return navigate(-1);
     }
     if (status !== 400) return
+    toast.error('Hãy đăng nhập lại', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     setAlert(true)
   }, [status, user, navigate]);
 
@@ -98,6 +114,17 @@ const Login = () => {
               <Link to="#" className="m-0">Quên mật khẩu?</Link>
             </div>
             <button className="form-submit">Đăng Nhập</button>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
           </form>
           <div className="login-policy">
             <p>Chúng tôi không sử dụng thông tin của bạn với bất kỳ mục đích nào. Bằng cách đăng nhập

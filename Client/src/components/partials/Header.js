@@ -1,14 +1,21 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { getHomepageDataFetch } from '../homepage/homePageSlice'
+import { getCartItemFetch } from '../shop/shopSlice'
 const Header = () => {
   const dispatch = useDispatch()
-  const [clickLink, setClickClick] = useState()
-  
+
   const user = useSelector(state => state.loginpage.user)
+  const length = useSelector(state => state.shop.length)
+
   const categories = useSelector(state => state.homepage.categories)
+
+  const [clickLink, setClickClick] = useState()
+  const [shopItemLenght, setShopItemLenght] = useState(0)
+
   user && localStorage.setItem('account', JSON.stringify(user?.username))
   const username = localStorage.getItem('account')
 
@@ -22,10 +29,17 @@ const Header = () => {
   useEffect(() => {
     dispatch(getHomepageDataFetch())
   }, [dispatch])
+  const accessToken = Cookies.get('accessToken')
 
-  const length = useSelector(state => state.shop.length)
-  console.log(length);
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(getCartItemFetch({ accessToken }))
+    }
+  })
 
+  useEffect(() => {
+    setShopItemLenght(length)
+  }, [length])
   return (
     <header id="header">
       <div className="container-header">
@@ -73,7 +87,7 @@ const Header = () => {
               <div className="btn-search pr-3">
                 <i className="fas fa-shopping-cart" />
                 <div className="qty">
-                  <p>{length}</p>
+                  <p>{shopItemLenght}</p>
                 </div>
               </div>
               <div className="btn-login">
