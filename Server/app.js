@@ -8,6 +8,7 @@ import routes from './routers/index.js'
 
 const app = express()
 const PORT = process.env.PORT || 5000
+
 app.use(cookieParser('MY SECRET'));
 app.use(bodyParser.json({ limit: '30mb' }))
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))

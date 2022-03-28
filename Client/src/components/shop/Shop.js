@@ -4,7 +4,7 @@ import moment from 'moment'
 import React, { useEffect, useRef, useState } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import { FormattedNumber, IntlProvider } from 'react-intl'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -18,10 +18,11 @@ const Shop = () => {
 
   const btn = useRef()
   const btnText = useRef()
-  
+
   const [shop, setShop] = useState([])
   const [counter, setCounter] = useState(1);
-
+  const [text, setText] = useState('Thêm vào giỏ hàng')
+  const [btnStyle, setBtnStyle] = useState(false)
   useEffect(() => {
     if (counter < 0) {
       toast.error('Số lượng > 0', {
@@ -50,17 +51,16 @@ const Shop = () => {
 
   const navigate = useNavigate()
   const handleClick = () => {
-    if (btn.current) {
-      btnText.current.innerHTML = "Đã thêm";
-      btn.current.classList.add("active");
-      setTimeout(() => {
-        btn.current.classList.remove("active");
-        btnText.current.innerHTML = "Thêm vào giỏ hàng";
-        btn.current.style.transition = '3s'
-      }, 3000)
-    }
     if (accessToken) {
       dispatch(addToCartFetch({ slug, qty: counter, accessToken }))
+      dispatch(getCartItemFetch({ accessToken }))
+      setText("Đã thêm")
+      setBtnStyle(true)
+      setTimeout(() => {
+        setBtnStyle(false)
+        setText("Thêm vào giỏ hàng")
+        btn.current.style.transition = '3s'
+      }, 3000)
       toast.success('Thêm thành công', {
         position: "top-right",
         autoClose: 3000,
@@ -70,8 +70,8 @@ const Shop = () => {
         draggable: true,
         progress: undefined,
       });
-      dispatch(getCartItemFetch({ accessToken }))
       setCounter(1)
+
     } else {
       toast.error('Bạn chưa đăng nhập', {
         position: "top-right",
@@ -129,8 +129,10 @@ const Shop = () => {
                     <FormattedNumber value={s.cost * counter} style="currency" currency="VND" />
                   </div>
                 </div>
-                <button ref={btn} id="btn" className="shop-detail__btn" onClick={handleClick}>
-                  <p ref={btnText} id="btnText">Thêm vào giỏ hàng</p>
+                <button ref={btn} id="btn"
+                  className={btnStyle ? "shop-detail__btn active" : "shop-detail__btn"}
+                  onClick={handleClick}>
+                  <p ref={btnText} id="btnText">{text}</p>
                   <div className="check-box">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
                       <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
