@@ -33,6 +33,8 @@ export const addToCart = async (req, res) => {
                 product_ID: shopID, qty, user_ID
             })
             await cartItem.save()
+            const cartItems = await CartItem.find({ user_ID })
+            res.send({ length: cartItems.length })
         }
         const cartItems = await CartItem.find({ user_ID })
         res.send({ length: cartItems.length })
