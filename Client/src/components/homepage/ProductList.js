@@ -22,7 +22,7 @@ const ProductList = () => {
                 <div className="right__list row m-0">
                     {shops.map(shop => {
                         return shop.category === category.name ?
-                        <Shop key={shop._id} id={shop._id} shopName={shop.shopName} img={shop.img} address={shop.address} cost={shop.cost} /> : ''
+                            <Shop key={shop._id} slug={shop.slug} shopName={shop.shopName} img={shop.img} address={shop.address} cost={shop.cost} /> : ''
                     })}
                 </div>
             </section >

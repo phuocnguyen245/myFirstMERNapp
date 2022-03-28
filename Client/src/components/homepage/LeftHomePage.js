@@ -3,26 +3,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import { categoriesSelector } from '../../redux/selector'
 import { getSearchFetch } from './homePageSlice'
 import SearchBar from './SearchBar'
-const LeftHomePage = ({ left, rightValue }) => {
+const LeftHomePage = () => {
   const [addAbsolute, setAddAbsolute] = useState('content-container-left')
   const [plusHeight, setPlusHeight] = useState(0)
   const [searchText, setSearchText] = useState('')
   const leftRef = useRef()
   const typingTimeoutRef = useRef(null)
+
   useEffect(() => {
     const onLoad = () => {
-
-      left(leftRef.current.getBoundingClientRect().height)
+      const leftHeight = leftRef.current.getBoundingClientRect().height
+      localStorage.setItem('leftHeight', leftHeight)
     }
     window.addEventListener('load', onLoad)
     return () => {
       window.removeEventListener('load', onLoad)
     }
-  }, [left])
+  }, [])
 
   useEffect(() => {
     const scroll = () => {
       const scroll = window.scrollY
+
+      const rightValue = localStorage.getItem('rightHeight')
       if (scroll >= rightValue - window.innerHeight) {
         setAddAbsolute('content-container-left absolute')
         setPlusHeight(rightValue - window.innerHeight - scroll)
@@ -35,7 +38,7 @@ const LeftHomePage = ({ left, rightValue }) => {
     return () => {
       window.removeEventListener('scroll', scroll)
     }
-  }, [rightValue])
+  }, [])
   const dispatch = useDispatch()
   const handleSearch = (e) => {
     setSearchText(e.target.value)

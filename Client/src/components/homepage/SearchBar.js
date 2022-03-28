@@ -8,7 +8,7 @@ const SearchBar = () => {
                 return <li key={shop._id}>
                     <a href="/#">
                         <img src={`./assets/img/${shop.img}`} alt="" />
-                        <div className="search-bar__item">
+                        <div className="search-bar__item default-color">
                             <p title={shop.shopName.toUpperCase()}>{shop.shopName}</p>
                             <p title={shop.address}>{shop.address}</p>
                         </div>

@@ -15,6 +15,10 @@ import './style.scss'
 const Shop = () => {
   const params = useParams()
   const dispatch = useDispatch()
+
+  const btn = useRef()
+  const btnText = useRef()
+  
   const [shop, setShop] = useState([])
   const [counter, setCounter] = useState(1);
 
@@ -33,22 +37,17 @@ const Shop = () => {
     }
   }, [counter])
 
-  const { id } = params
+  const { slug } = params
   const accessToken = Cookies.get('accessToken')
   useEffect(() => {
     const getData = async () => {
-      const fetch = await axios.get(`http://localhost:5000/api/product/${id}`)
+      const fetch = await axios.get(`http://localhost:5000/api/product/${slug}`)
       const { shop } = await fetch.data
       setShop(shop)
     }
     getData()
-  }, [id])
+  }, [slug])
 
-  const length = useSelector(state => state.shop.length)
-  useEffect(() => {
-    console.log(length);
-  }, [length])
-  
   const navigate = useNavigate()
   const handleClick = () => {
     if (btn.current) {
@@ -61,7 +60,7 @@ const Shop = () => {
       }, 3000)
     }
     if (accessToken) {
-      dispatch(addToCartFetch({ product_ID: id, qty: counter, accessToken }))
+      dispatch(addToCartFetch({ slug, qty: counter, accessToken }))
       toast.success('Thêm thành công', {
         position: "top-right",
         autoClose: 3000,
@@ -86,15 +85,7 @@ const Shop = () => {
       setTimeout(() => navigate('/login'), 1500)
     }
   }
-  const btn = useRef()
-  const btnText = useRef()
 
-  // useEffect(() => {
-  //   if (btn.current)
-  //     btn.current.onclick = () => {
-
-  //     }
-  // }, [])
 
   return (
     shop.map(s => (

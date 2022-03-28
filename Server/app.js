@@ -23,10 +23,7 @@ dotenv.config()
 connect.connect()
 
 app.use('/', routes)
-app.get('/setcookie', (req, res) => {
-    console.log(req.cookies)
-    res.send(req.cookies);
-});
+
 app.listen(PORT, () => {
     console.log(`Server running on PORT ${PORT}`);
 })

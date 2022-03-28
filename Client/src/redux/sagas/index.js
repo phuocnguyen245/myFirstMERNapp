@@ -24,7 +24,6 @@ function* checkData(action) {
     try {
         const userApi = yield call(() => axios.post('http://localhost:5000/api/login/check-user', action.payload, { withCredentials: true }))
         const data = yield userApi.data
-        console.log(data);
         yield put(getUserInfoSuccess(data))
     } catch (error) {
         yield put(getUserInfoFailure(400));

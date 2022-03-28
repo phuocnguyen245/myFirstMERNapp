@@ -45,7 +45,7 @@ const Header = () => {
       <div className="container-header">
         <div className="container p-2">
           <div className="row p-2 justify-content-between align-items-center">
-            <div className="col-2 p-0">
+            <div className="p-0">
               <Link to="/">
                 <img className="shopeefoodlogo" src="/assets/img/shopeefoodvn.png" alt="" />
               </Link>
@@ -83,7 +83,7 @@ const Header = () => {
                 </div>
               ))}
             </nav>
-            <div className="col-2 flex align-items-center justify-content-end">
+            <div className="flex align-items-center justify-content-end">
               <div className="btn-search pr-3">
                 <i className="fas fa-shopping-cart" />
                 <div className="qty">
