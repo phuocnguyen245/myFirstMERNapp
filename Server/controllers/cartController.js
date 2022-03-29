@@ -6,8 +6,21 @@ export const renderCart = async (req, res) => {
     try {
         if (accessToken) {
             const { id } = jwt_decode(accessToken)
-            const cartItems = await CartItem.find({ user_ID: id })
-            return res.send({ data: cartItems, length: cartItems.length })
+            const mergerCartItemAndShops = await CartItem.find({ user_ID: id })
+                .populate({
+                    path: 'product_ID',
+                })
+            const data = mergerCartItemAndShops.map(d => {
+                return {
+                    img: d.product_ID.img,
+                    name: d.product_ID.shopName,
+                    qty: d.qty,
+                    cost: d.cost,
+                    _id: d.product_ID._id,
+                    slug: d.product_ID.slug
+                }
+            })
+            return res.send({ data, length: data.length })
         } else {
             res.sendStatus(400)
         }
@@ -21,7 +34,8 @@ export const addToCart = async (req, res) => {
         const { slug, qty, accessToken } = req.body
         const { id: user_ID } = jwt_decode(accessToken)
         const shop = await Shops.find({ slug })
-        const { _id: shopID } = shop.find(s => s._id)
+        const { _id: shopID, cost } = shop.find(s => s._id)
+        console.log(cost);
         const isHave = await CartItem.find({ product_ID: shopID })
         if (isHave.length === 1) {
             const cartItemID = isHave.map(item => item._id)
@@ -30,11 +44,9 @@ export const addToCart = async (req, res) => {
             await cartItem.save()
         } else {
             const cartItem = new CartItem({
-                product_ID: shopID, qty, user_ID
+                product_ID: shopID, qty, user_ID, cost
             })
             await cartItem.save()
-            const cartItems = await CartItem.find({ user_ID })
-            res.send({ length: cartItems.length })
         }
         const cartItems = await CartItem.find({ user_ID })
         res.send({ length: cartItems.length })

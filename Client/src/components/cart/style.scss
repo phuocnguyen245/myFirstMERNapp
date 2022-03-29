@@ -1,0 +1,104 @@
+.cart {
+  color: #757575;
+  margin-top: 80px;
+  .cart__header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    > a {
+      width: 200px;
+      text-decoration: none;
+      color: #ee4d2d;
+      font-size: 25px;
+    }
+    .left__search {
+      width: 50%;
+    }
+  }
+  .cart__container {
+    width: 100%;
+    .left {
+      width: 70%;
+      margin-right: 20px;
+
+      &__bar {
+        background: #fff;
+        padding: 8px 12px 8px;
+        input {
+          transform: scale(1.5);
+        }
+      }
+      &__list {
+        .cart-item {
+          width: 100%;
+          overflow: hidden;
+          margin: 10px 0;
+          background: #fff;
+          padding: 12px;
+
+          .product-left {
+            height: 80px;
+            input {
+              transform: scale(1.5);
+              margin: 0 15px;
+            }
+            a {
+              height: 100%;
+              img {
+                width: 80px;
+                height: 100%;
+                object-fit: cover;
+                margin-right: 15px;
+              }
+            }
+            p {
+              width: 320px;
+              max-width: 100%;
+              text-transform: capitalize;
+              font-size: 15px;
+            }
+          }
+          .product-mid {
+            .price {
+              font-size: 18px;
+              color: #f57224;
+              font-weight: 700;
+              margin-bottom: 8px;
+              min-width: 100px;
+            }
+            .item_btn {
+              cursor: pointer;
+              gap: 16px;
+              svg {
+                transform: scale(1.2);
+              }
+            }
+          }
+          .product-right {
+            .btn__minus,
+            .btn__plus {
+              padding: 7px 12px;
+              height: 32px;
+              background: #eff0f5;
+              cursor: pointer;
+            }
+            .qty {
+              height: 32px;
+              input {
+                max-width: 40px;
+                height: 100%;
+                text-align: center;
+                border: none;
+                margin: 0 1px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .right {
+      background: #fff;
+      width: 30%;
+    }
+  }
+}

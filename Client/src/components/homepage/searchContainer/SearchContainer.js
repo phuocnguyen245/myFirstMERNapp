@@ -18,7 +18,7 @@ const SearchContainer = () => {
     }
 
   return (
-      <div className="left__search col-12 col-sm-12 col-md-12 p-0">
+      <div className="left__search p-0">
           <input type="text" value={searchText} onChange={handleSearch} placeholder="Tìm địa điểm, món ăn, địa chỉ" />
           <a href="/#">
               <button className="btn">

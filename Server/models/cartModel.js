@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 const cartItem = new Schema({
     product_ID: {
-        type: Object,
+        type: Schema.Types.ObjectId,
+        ref: 'shops',
         require: true
     },
     user_ID: {
@@ -12,6 +13,13 @@ const cartItem = new Schema({
     qty: {
         type: Number,
         require: true
+    },
+    cost: {
+        type: Number,
+        require: true
+    },
+    img: {
+        type: String,
     }
 }, {
     timestamps: true

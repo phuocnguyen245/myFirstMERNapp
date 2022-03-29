@@ -55,7 +55,6 @@ function* getCartItem(action) {
                     { headers: { authorization: `Bearer ${header}` } }
                 ))
             const data = yield fetch.data
-            console.log(data.length);
             yield put(getCartItemSuccess(data))
         }
 

@@ -3,7 +3,7 @@ export const shopSlice = createSlice({
     name: 'shop',
     initialState: {
         length: 0,
-        cartItem: null,
+        cartItems: null,
         status: 0
     },
     reducers: {
@@ -22,7 +22,7 @@ export const shopSlice = createSlice({
         },
         getCartItemSuccess: (state, action) => {
             state.length = action.payload.length
-            state.cartItem = action.payload
+            state.cartItems = action.payload.data
         },
         getCartItemFailure: (state, action) => {
             state.status = action.payload

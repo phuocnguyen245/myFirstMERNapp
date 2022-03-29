@@ -7,7 +7,7 @@ const SearchBar = () => {
         <ul className="search-bar">
             {shops.map(shop => {
                 return <li key={shop._id}>
-                    <Link to={`/product/${shop.slug}`}>
+                    <Link to={`/product/${shop.slug}`} target="_blank">
                         <img src={`./assets/img/${shop.img}`} alt="" />
                         <div className="search-bar__item default-color">
                             <p title={shop.shopName.toUpperCase()}>{shop.shopName}</p>

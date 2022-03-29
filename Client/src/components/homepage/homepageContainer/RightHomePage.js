@@ -6,7 +6,7 @@ const RightHomePage = () => {
     useEffect(() => {
         const onLoad = () => {
             setTimeout(() => {
-                const rightHeight = rightRef.current.getBoundingClientRect().height
+                const rightHeight = rightRef?.current?.getBoundingClientRect().height
                 localStorage.setItem('rightHeight', rightHeight)
             }, 2000)
         }
