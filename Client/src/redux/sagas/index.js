@@ -4,25 +4,25 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { getCategoriesSuccess, getHomepageDataFetch, getSearchFetch, getSearchSuccess, getShopsSuccess } from '../../components/homepage/homePageSlice'
 import { getUserInfoFailure, getUserInfoFetch, getUserInfoSuccess } from '../../components/loginPage/loginSlice'
 import { addToCartFailure, addToCartFetch, addToCartSuccess, getCartItemFailure, getCartItemFetch, getCartItemSuccess } from '../../components/shop/shopSlice'
-
+import { URL } from '../../constants'
 const header = Cookies.get('accessToken')
 
 function* getData() {
-    const homepageApi = yield call(() => axios.get('http://localhost:5000/api/homepage'))
+    const homepageApi = yield call(() => axios.get(`${URL}/homepage`))
     const data = yield homepageApi.data
     yield put(getCategoriesSuccess(data))
     yield put(getShopsSuccess(data))
 }
 
 function* searchData(action) {
-    const searchApi = yield call(() => axios.get(`http://localhost:5000/api/homepage/search?q=${action.payload}`))
+    const searchApi = yield call(() => axios.get(`${URL}/homepage/search?q=${action.payload}`))
     const data = yield searchApi.data
     yield put(getSearchSuccess(data.shops))
 }
 
 function* checkData(action) {
     try {
-        const userApi = yield call(() => axios.post('http://localhost:5000/api/login/check-user', action.payload, { withCredentials: true }))
+        const userApi = yield call(() => axios.post(`${URL}/login/check-user`, action.payload, { withCredentials: true }))
         const data = yield userApi.data
         yield put(getUserInfoSuccess(data))
     } catch (error) {
@@ -34,7 +34,7 @@ function* addToCart(action) {
     try {
         if (header) {
             const fetch = yield call(() =>
-                axios.post('http://localhost:5000/api/cart/add-to-cart', action.payload,
+                axios.post(`${URL}/cart/add-to-cart`, action.payload,
                     { headers: { authorization: `Bearer ${header}` } }
                 ))
             const data = yield fetch.data
@@ -51,7 +51,7 @@ function* getCartItem(action) {
     try {
         if (header) {
             const fetch = yield call(() =>
-                axios.post('http://localhost:5000/api/cart', action.payload,
+                axios.post(`${URL}/cart`, action.payload,
                     { headers: { authorization: `Bearer ${header}` } }
                 ))
             const data = yield fetch.data

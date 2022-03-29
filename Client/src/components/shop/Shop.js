@@ -11,18 +11,15 @@ import 'react-toastify/dist/ReactToastify.css'
 import StartRating from '../partials/StartRating'
 import { addToCartFetch, getCartItemFetch } from './shopSlice'
 import './style.scss'
-
+import { URL } from '../../constants'
 const Shop = () => {
   const params = useParams()
   const dispatch = useDispatch()
 
   const btn = useRef()
   const btnText = useRef()
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 1fdc11aa81acddd8f5726e6569b65740356079f9
+
   const [shop, setShop] = useState([])
   const [counter, setCounter] = useState(1);
   const [text, setText] = useState('Thêm vào giỏ hàng')
@@ -46,7 +43,7 @@ const Shop = () => {
   const accessToken = Cookies.get('accessToken')
   useEffect(() => {
     const getData = async () => {
-      const fetch = await axios.get(`http://localhost:5000/api/product/${slug}`)
+      const fetch = await axios.get(`${URL}/product/${slug}`)
       const { shop } = await fetch.data
       setShop(shop)
     }
@@ -65,12 +62,9 @@ const Shop = () => {
         setText("Thêm vào giỏ hàng")
         btn.current.style.transition = '3s'
       }, 3000)
-<<<<<<< HEAD
-=======
     }
     if (accessToken) {
       dispatch(addToCartFetch({ slug, qty: counter, accessToken }))
->>>>>>> 1fdc11aa81acddd8f5726e6569b65740356079f9
       toast.success('Thêm thành công', {
         position: "top-right",
         autoClose: 3000,

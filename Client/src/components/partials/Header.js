@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { getHomepageDataFetch } from '../homepage/homePageSlice'
 import { getCartItemFetch } from '../shop/shopSlice'
+import { URL } from '../../constants'
 const Header = () => {
   const dispatch = useDispatch()
 
@@ -22,7 +23,7 @@ const Header = () => {
   const handleClick = async () => {
     localStorage.removeItem('account');
     localStorage.removeItem('accessToken')
-    await axios.get('http://localhost:5000/api/login/logout', { withCredentials: true })
+    await axios.get(`${URL}/login/logout`, { withCredentials: true })
     window.location.href = '/login'
   }
 

@@ -1,0 +1,1 @@
+export const URL = 'https://shopeefood.herokuapp.com/api'
