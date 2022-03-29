@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="container">
                 <h3>Danh mục</h3>
                 <div className="row">
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
+                    <div className="col-12 col-sm-6 col-md-6 col-xl-3 footer__list p-0">
                         <a href="/#">Thuốc</a>
                         <div className="footer__items">
                             <a href="/#">Hóa mỹ phẩm</a>
@@ -14,7 +14,56 @@ const Footer = () => {
                             <a href="/#">Thiết bị</a>
                             <a href="/#">Thuốc tây</a>
                             <a href="/#">Khẩu trang</a>
-                            <a href="/#">Khẩn cấp</a>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-6 col-xl-3 footer__list p-0">
+                        <a href="/#">Thuốc</a>
+                        <div className="footer__items">
+                            <a href="/#">Hóa mỹ phẩm</a>
+                            <a href="/#">BCS</a>
+                            <a href="/#">Thiết bị</a>
+                            <a href="/#">Thuốc tây</a>
+                            <a href="/#">Khẩu trang</a>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-6 col-xl-3 footer__list p-0">
+                        <a href="/#">Thuốc</a>
+                        <div className="footer__items">
+                            <a href="/#">Hóa mỹ phẩm</a>
+                            <a href="/#">BCS</a>
+                            <a href="/#">Thiết bị</a>
+                            <a href="/#">Thuốc tây</a>
+                            <a href="/#">Khẩu trang</a>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-6 col-xl-3 footer__list p-0">
+                        <a href="/#">Thuốc</a>
+                        <div className="footer__items">
+                            <a href="/#">Hóa mỹ phẩm</a>
+                            <a href="/#">BCS</a>
+                            <a href="/#">Thiết bị</a>
+                            <a href="/#">Thuốc tây</a>
+                            <a href="/#">Khẩu trang</a>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-6 col-xl-3 footer__list p-0">
+                        <a href="/#">Thuốc</a>
+                        <div className="footer__items">
+                            <a href="/#">Hóa mỹ phẩm</a>
+                            <a href="/#">BCS</a>
+                            <a href="/#">Thiết bị</a>
+                            <a href="/#">Thuốc tây</a>
+                            <a href="/#">Khẩu trang</a>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-6 col-xl-3 footer__list p-0">
+                        <a href="/#">Thuốc</a>
+                        <div className="footer__items">
+                            <a href="/#">Hóa mỹ phẩm</a>
+                            <a href="/#">BCS</a>
+                            <a href="/#">Thiết bị</a>
+                            <a href="/#">Thuốc tây</a>
+                            <a href="/#">Khẩu trang</a>
                         </div>
                     </div>
                     <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
@@ -25,62 +74,6 @@ const Footer = () => {
                             <a href="/#">Thiết bị</a>
                             <a href="/#">Thuốc tây</a>
                             <a href="/#">Khẩu trang</a>
-                            <a href="/#">Khẩn cấp</a>
-                        </div>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
-                        <a href="/#">Thuốc</a>
-                        <div className="footer__items">
-                            <a href="/#">Hóa mỹ phẩm</a>
-                            <a href="/#">BCS</a>
-                            <a href="/#">Thiết bị</a>
-                            <a href="/#">Thuốc tây</a>
-                            <a href="/#">Khẩu trang</a>
-                            <a href="/#">Khẩn cấp</a>
-                        </div>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
-                        <a href="/#">Thuốc</a>
-                        <div className="footer__items">
-                            <a href="/#">Hóa mỹ phẩm</a>
-                            <a href="/#">BCS</a>
-                            <a href="/#">Thiết bị</a>
-                            <a href="/#">Thuốc tây</a>
-                            <a href="/#">Khẩu trang</a>
-                            <a href="/#">Khẩn cấp</a>
-                        </div>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
-                        <a href="/#">Thuốc</a>
-                        <div className="footer__items">
-                            <a href="/#">Hóa mỹ phẩm</a>
-                            <a href="/#">BCS</a>
-                            <a href="/#">Thiết bị</a>
-                            <a href="/#">Thuốc tây</a>
-                            <a href="/#">Khẩu trang</a>
-                            <a href="/#">Khẩn cấp</a>
-                        </div>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
-                        <a href="/#">Thuốc</a>
-                        <div className="footer__items">
-                            <a href="/#">Hóa mỹ phẩm</a>
-                            <a href="/#">BCS</a>
-                            <a href="/#">Thiết bị</a>
-                            <a href="/#">Thuốc tây</a>
-                            <a href="/#">Khẩu trang</a>
-                            <a href="/#">Khẩn cấp</a>
-                        </div>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-3 col-xl-3 footer__list p-0">
-                        <a href="/#">Thuốc</a>
-                        <div className="footer__items">
-                            <a href="/#">Hóa mỹ phẩm</a>
-                            <a href="/#">BCS</a>
-                            <a href="/#">Thiết bị</a>
-                            <a href="/#">Thuốc tây</a>
-                            <a href="/#">Khẩu trang</a>
-                            <a href="/#">Khẩn cấp</a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +81,7 @@ const Footer = () => {
             </div>
             <div className="container">
                 <div className="row">
-                    <div className="footer-col col-md-3 col-sm-3 col-xl-3 p-0">
+                    <div className="footer-col col-md-6 col-sm-6 col-xl-3 p-0">
                         <h3>Công ty</h3>
                         <ul>
                             <li><a href="/#">Giới thiệu</a></li>
@@ -103,7 +96,7 @@ const Footer = () => {
                             <li><a href="/#">ShopeeFood Uni</a></li>
                         </ul>
                     </div>
-                    <div className="footer-col col-md-2 col-sm-2 col-xl-2 p-0">
+                    <div className="footer-col col-md-6 col-sm-6 col-xl-2 p-0">
                         <h3>Ứng dụng ShopeeFood</h3>
                         <ul>
                             <li><a href="/#"><img src="/assets/img/AppStore-vn.png" alt="" /></a></li>
@@ -111,7 +104,7 @@ const Footer = () => {
                             <li><a href="/#"><img src="/assets/img/Huawei-gallery-vn.png" alt="" /></a></li>
                         </ul>
                     </div>
-                    <div className="footer-col col-md-2 col-sm-1 col-xl-2 p-0">
+                    <div className="footer-col col-md-6 col-sm-6 col-xl-2 p-0">
                         <ul>
                             <li><img src="/assets/img/Logo-ShopeefoodVN.png" alt="" /></li>
                             <li>© 2021 ShopeeFood</li>
@@ -121,7 +114,7 @@ const Footer = () => {
                             </div>
                         </ul>
                     </div>
-                    <div className="footer-col col-md-5 col-sm-5 col-xl-5 p-0">
+                    <div className="footer-col col-md-6 col-sm-6 col-xl-5 p-0">
                         <h3>Địa chỉ công ty</h3>
                         <ul>
                             <li>Công Ty Cổ Phần Foody</li>

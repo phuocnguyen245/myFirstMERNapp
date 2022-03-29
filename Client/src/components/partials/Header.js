@@ -1,18 +1,19 @@
-import axios from 'axios'
 import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { getHomepageDataFetch } from '../homepage/homePageSlice'
 import { getCartItemFetch } from '../shop/shopSlice'
-import { URL } from '../../constants'
 const Header = () => {
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const user = useSelector(state => state.loginpage.user)
   const length = useSelector(state => state.shop.length)
-
   const categories = useSelector(state => state.homepage.categories)
+
+  const accessToken = Cookies.get('accessToken')
 
   const [clickLink, setClickClick] = useState()
   const [shopItemLenght, setShopItemLenght] = useState(0)
@@ -21,16 +22,16 @@ const Header = () => {
   const username = localStorage.getItem('account')
 
   const handleClick = async () => {
+    Cookies.remove('accessToken')
     localStorage.removeItem('account');
-    localStorage.removeItem('accessToken')
-    await axios.get(`${URL}/login/logout`, { withCredentials: true })
+    setShopItemLenght(0)
     window.location.href = '/login'
   }
 
   useEffect(() => {
     dispatch(getHomepageDataFetch())
   }, [dispatch])
-  const accessToken = Cookies.get('accessToken')
+
 
   useEffect(() => {
     if (accessToken) {
@@ -41,6 +42,23 @@ const Header = () => {
   useEffect(() => {
     setShopItemLenght(length)
   }, [length])
+
+  const handleCartClick = () => {
+    if (accessToken) {
+      navigate('/cart')
+    } else {
+      toast.error('Chưa đăng nhập', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => navigate('/login'), 1500)
+    }
+  }
   return (
     <header id="header">
       <div className="container-header">
@@ -78,14 +96,14 @@ const Header = () => {
               {categories.map(category => (
                 <div className="nav-item" key={category._id}>
                   <NavLink to="/" className={clickLink === category._id && 'active-link'} onClick={() => setClickClick(category._id)}>
-                    <img style={{ display: 'none' }} src="./assets/img/imgsmall1.png" alt="" />
+                    <img style={{ display: 'none' }} src="/assets/img/imgsmall1.png" alt="" />
                     <p>{category.name}</p>
                   </NavLink>
                 </div>
               ))}
             </nav>
             <div className="flex align-items-center justify-content-end">
-              <div className="btn-search pr-3">
+              <div className="btn-search pr-3" onClick={handleCartClick}>
                 <i className="fas fa-shopping-cart" />
                 <div className="qty">
                   <p>{shopItemLenght}</p>
@@ -101,6 +119,17 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </header>
   )
 }

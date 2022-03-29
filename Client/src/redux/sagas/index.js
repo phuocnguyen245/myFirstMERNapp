@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { getCategoriesSuccess, getHomepageDataFetch, getSearchFetch, getSearchSuccess, getShopsSuccess } from '../../components/homepage/homePageSlice'
 import { getUserInfoFailure, getUserInfoFetch, getUserInfoSuccess } from '../../components/loginPage/loginSlice'
 import { addToCartFailure, addToCartFetch, addToCartSuccess, getCartItemFailure, getCartItemFetch, getCartItemSuccess } from '../../components/shop/shopSlice'
@@ -55,6 +55,7 @@ function* getCartItem(action) {
                     { headers: { authorization: `Bearer ${header}` } }
                 ))
             const data = yield fetch.data
+            console.log(data.length);
             yield put(getCartItemSuccess(data))
         }
 
@@ -66,7 +67,7 @@ function* mySaga() {
     yield takeEvery(getHomepageDataFetch.toString(), getData)
     yield takeEvery(getSearchFetch.toString(), searchData)
     yield takeEvery(getUserInfoFetch.toString(), checkData)
-    yield takeEvery(addToCartFetch.toString(), addToCart)
-    yield takeEvery(getCartItemFetch.toString(), getCartItem)
+    yield takeLatest(addToCartFetch.toString(), addToCart)
+    yield takeLatest(getCartItemFetch.toString(), getCartItem)
 }
 export default mySaga;

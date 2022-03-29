@@ -33,7 +33,7 @@ const Login = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (user) {
-      return navigate(-1);
+      navigate('/');
     }
     if (status !== 400) return
     toast.error('Hãy đăng nhập lại', {

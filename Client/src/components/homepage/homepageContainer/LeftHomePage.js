@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { categoriesSelector } from '../../redux/selector'
-import { getSearchFetch } from './homePageSlice'
-import SearchBar from './SearchBar'
+import { useSelector } from 'react-redux'
+import { categoriesSelector } from '../../../redux/selector'
+import SearchContainer from '../searchContainer/SearchContainer'
+
 const LeftHomePage = () => {
   const [addAbsolute, setAddAbsolute] = useState('content-container-left')
   const [plusHeight, setPlusHeight] = useState(0)
-  const [searchText, setSearchText] = useState('')
+
   const leftRef = useRef()
-  const typingTimeoutRef = useRef(null)
+
 
   useEffect(() => {
     const onLoad = () => {
@@ -39,16 +39,6 @@ const LeftHomePage = () => {
       window.removeEventListener('scroll', scroll)
     }
   }, [])
-  const dispatch = useDispatch()
-  const handleSearch = (e) => {
-    setSearchText(e.target.value)
-    if (typingTimeoutRef.current) {
-      clearTimeout(typingTimeoutRef.current)
-    }
-    typingTimeoutRef.current = setTimeout(() => {
-      e.target.value === '' ? dispatch(getSearchFetch(null)) : dispatch(getSearchFetch(e.target.value))
-    }, 500)
-  }
 
   const categories = useSelector(categoriesSelector)
   return (
@@ -59,15 +49,7 @@ const LeftHomePage = () => {
             <h1>Đặt đồ ăn, giao hàng từ 20'...</h1>
             <p className="t-w">Có 9047 Địa Điểm Ở Đà Nẵng Từ 06:00 - 22:00</p>
           </div>
-          <div className="left__search col-12 col-sm-12 col-md-12 p-0">
-            <input type="text" value={searchText} onChange={handleSearch} placeholder="Tìm địa điểm, món ăn, địa chỉ" />
-            <a href="/#">
-              <button className="btn">
-                <i className="fa fa-search text-white" />
-              </button>
-            </a>
-            <SearchBar />
-          </div>
+          <SearchContainer />
           <div className="left__menu flex">
             <a className="left__menu__item" href="/#">All</a>
             {categories.map(category => {
@@ -94,7 +76,6 @@ const LeftHomePage = () => {
         </div>
       </div>
     </div>
-
   )
 }
 

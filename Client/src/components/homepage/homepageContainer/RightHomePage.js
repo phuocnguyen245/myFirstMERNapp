@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import ProductList from './ProductList'
+import ProductList from '../productList/ProductList'
 const RightHomePage = () => {
 
     const rightRef = useRef()
@@ -8,7 +8,7 @@ const RightHomePage = () => {
             setTimeout(() => {
                 const rightHeight = rightRef.current.getBoundingClientRect().height
                 localStorage.setItem('rightHeight', rightHeight)
-            }, 500)
+            }, 2000)
         }
         window.addEventListener('load', onLoad)
         return () => {

@@ -22,6 +22,7 @@ body {
   line-height: 1.6rem;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background: #f2f2f2;
 }
 .shopeefoodlogo {
   height: 30px;

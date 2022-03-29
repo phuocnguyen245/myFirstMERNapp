@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import StartRating from '../partials/StartRating'
 import { addToCartFetch, getCartItemFetch } from './shopSlice'
 import './style.scss'
-import { URL } from '../../constants'
 const Shop = () => {
   const params = useParams()
   const dispatch = useDispatch()
@@ -43,7 +42,7 @@ const Shop = () => {
   const accessToken = Cookies.get('accessToken')
   useEffect(() => {
     const getData = async () => {
-      const fetch = await axios.get(`${URL}/product/${slug}`)
+      const fetch = await axios.get(`https://shopeefood.herokuapp.com/api/product/${slug}`)
       const { shop } = await fetch.data
       setShop(shop)
     }
@@ -62,9 +61,6 @@ const Shop = () => {
         setText("Thêm vào giỏ hàng")
         btn.current.style.transition = '3s'
       }, 3000)
-    }
-    if (accessToken) {
-      dispatch(addToCartFetch({ slug, qty: counter, accessToken }))
       toast.success('Thêm thành công', {
         position: "top-right",
         autoClose: 3000,

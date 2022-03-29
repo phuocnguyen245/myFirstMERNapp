@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
-import HomePage from './components/homepage/HomePage';
+import Cart from './components/cart/Cart';
+import HomePage from './components/homepage/homepageContainer/HomePage';
 import Login from './components/loginPage/Login';
 import Shop from './components/shop/Shop';
 import store from './redux/store';
@@ -22,6 +23,7 @@ ReactDOM.render(
             <Route path='/' element={<HomePage />}></Route>
             <Route path='product/:slug' element={<Shop />} />
             <Route path='login' element={<Login />}></Route>
+            <Route path='cart' element={<Cart />}></Route>
           </Route>
         </Routes>
       </Provider>
