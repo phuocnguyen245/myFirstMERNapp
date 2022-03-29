@@ -8,9 +8,14 @@ import Cookies from 'js-cookie'
 import "./style.scss";
 const Cart = () => {
   const navigate = useNavigate()
+
   const { cartItems } = useSelector(state => state.shop)
-  const [checkAll, setCheckAll] = useState(false)
+
   const accessToken = Cookies.get('accessToken')
+
+  const address = localStorage.getItem('address')
+
+  const [checkAll, setCheckAll] = useState(false)
 
   useEffect(() => {
     if (!accessToken) {
@@ -46,17 +51,17 @@ const Cart = () => {
             <div className="left__list">
               {cartItems && cartItems.map(item =>
                 <CartItem product_ID={item._id} name={item.name} key={item._id} cost={item.cost}
-                  qty={item.qty} img={item.img} slug={item.slug} checkAll={checkAll}
+                  qty={item.qty} img={item.img} slug={item.slug} cartItem_ID={item.cartItem_ID} checkAll={checkAll}
                 />)}
             </div>
           </div>
           <div className="cart__right right">
             <div className="right__header">
-              <p>Địa điểm</p>
+              <p className="mb-0">Địa điểm</p>
               <div className="right__location d-flex justify-content-start align-items-center">
                 <GoLocation />
-                <div className="address">
-                  309 LD
+                <div className="address ml-3">
+                  {address}
                 </div>
               </div>
             </div>
@@ -69,7 +74,7 @@ const Cart = () => {
                 <p>0đ</p>
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <div className="choose-coupon">
+                <div className="choose-coupon fz-14">
                   Chọn mã giảm giá
                 </div>
                 <p className="m-0">

@@ -4,6 +4,7 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { getCategoriesSuccess, getHomepageDataFetch, getSearchFetch, getSearchSuccess, getShopsSuccess } from '../../components/homepage/homePageSlice'
 import { getUserInfoFailure, getUserInfoFetch, getUserInfoSuccess } from '../../components/loginPage/loginSlice'
 import { addToCartFailure, addToCartFetch, addToCartSuccess, getCartItemFailure, getCartItemFetch, getCartItemSuccess } from '../../components/shop/shopSlice'
+import { putShopQtyFetch, putShopQtySuccess, putShopQtyFailure, deleteCartItemFetch, deleteCartItemFailure } from '../../components/cart/cartSlice'
 import { URL } from '../../constants'
 const header = Cookies.get('accessToken')
 
@@ -62,11 +63,43 @@ function* getCartItem(action) {
         yield put(getCartItemFailure(400))
     }
 }
+
+function* putShopQty(action) {
+    try {
+        const fetch = yield call(() => axios.put(`${URL}/cart/change-qty`, action.payload,
+            { headers: { authorization: `Bearer ${header}` } }
+        ))
+        const data = yield fetch.data
+        yield put(putShopQtySuccess(data))
+    } catch (error) {
+        yield put(putShopQtyFailure(400))
+    }
+}
+
+function* deleteCartItem(action) {
+    try {
+
+        const fetch = yield call(() => axios.delete(`${URL}/cart/delete-cart-item/${action.payload}`,
+            { headers: { authorization: `Bearer ${header}` } }
+        ))
+        const data = yield fetch.data
+        yield put(putShopQtySuccess(data))
+    } catch (error) {
+        yield put(deleteCartItemFailure(400))
+    }
+}
+
 function* mySaga() {
+    // Homepage
     yield takeEvery(getHomepageDataFetch.toString(), getData)
     yield takeEvery(getSearchFetch.toString(), searchData)
+    // Login
     yield takeEvery(getUserInfoFetch.toString(), checkData)
+    // Cart 
     yield takeLatest(addToCartFetch.toString(), addToCart)
     yield takeLatest(getCartItemFetch.toString(), getCartItem)
+
+    yield takeEvery(putShopQtyFetch.toString(), putShopQty)
+    yield takeEvery(deleteCartItemFetch.toString(), deleteCartItem)
 }
 export default mySaga;

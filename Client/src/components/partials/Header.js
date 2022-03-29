@@ -24,6 +24,7 @@ const Header = () => {
   const handleClick = async () => {
     Cookies.remove('accessToken')
     localStorage.removeItem('account');
+    localStorage.removeItem('expired')
     setShopItemLenght(0)
     window.location.href = '/login'
   }
@@ -42,6 +43,17 @@ const Header = () => {
   useEffect(() => {
     setShopItemLenght(length)
   }, [length])
+
+
+  useEffect(() => {
+    const now = new Date().getTime();
+    const expired = localStorage.getItem('expired');
+    if (now > expired) {
+      localStorage.removeItem('account');
+      localStorage.removeItem('expired')
+    }
+  })
+
 
   const handleCartClick = () => {
     if (accessToken) {

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
+import cartSlice from '../components/cart/cartSlice';
 import homePageSlice from '../components/homepage/homePageSlice';
 import loginpageSlice from '../components/loginPage/loginSlice';
 import shopSlice from '../components/shop/shopSlice';
@@ -10,7 +11,8 @@ const store = configureStore({
     reducer: {
         homepage: homePageSlice,
         loginpage: loginpageSlice,
-        shop: shopSlice
+        shop: shopSlice,
+        cart: cartSlice
     },
     middleware: [sagaMiddleware]
 })

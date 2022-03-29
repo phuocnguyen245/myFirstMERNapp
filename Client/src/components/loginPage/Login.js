@@ -19,6 +19,7 @@ const Login = () => {
   const [alert, setAlert] = useState(false)
 
   const { user } = useSelector(state => state.loginpage)
+
   const { status } = useSelector(state => state.loginpage)
 
   const dispatch = useDispatch()
@@ -33,6 +34,9 @@ const Login = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (user) {
+      const now = new Date().getTime();
+      localStorage.setItem('expired', now * 2)
+      localStorage.setItem('address', user.address)
       window.location.href = '/'
     }
     if (status !== 400) return

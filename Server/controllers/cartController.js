@@ -18,7 +18,8 @@ export const renderCart = async (req, res) => {
                     qty: d.qty,
                     cost: d.cost,
                     _id: d.product_ID._id,
-                    slug: d.product_ID.slug
+                    slug: d.product_ID.slug,
+                    cartItem_ID: d._id
                 }
             })
             return res.send({ data, length: data.length })
@@ -58,8 +59,24 @@ export const addToCart = async (req, res) => {
 
 export const handleChangeQuantity = async (req, res) => {
     try {
-        console.log(req.body);
+        const { product_ID, qty, accessToken } = req.body
+        const { id } = jwt_decode(accessToken)
+        await CartItem.findOneAndUpdate({
+            user_ID: id, product_ID
+        }, {
+            qty
+        });
+        res.send(200)
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const handleDeleteCartItem = async (req, res) => {
+    try {
+        const { id } = req.params
+        await CartItem.findByIdAndDelete(id)
+    } catch (error) {
+        res.send(400)
     }
 }
