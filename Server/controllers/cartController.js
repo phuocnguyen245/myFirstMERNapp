@@ -1,6 +1,7 @@
 import jwt_decode from "jwt-decode";
 import { CartItem } from "../models/cartModel.js";
 import { Shops } from "../models/shopsModel.js";
+
 export const renderCart = async (req, res) => {
     const { accessToken } = req.body
     try {
@@ -50,6 +51,14 @@ export const addToCart = async (req, res) => {
         }
         const cartItems = await CartItem.find({ user_ID })
         res.send({ length: cartItems.length })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const handleChangeQuantity = async (req, res) => {
+    try {
+        console.log(req.body);
     } catch (error) {
         console.log(error);
     }

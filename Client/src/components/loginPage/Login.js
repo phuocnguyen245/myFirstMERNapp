@@ -33,7 +33,7 @@ const Login = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (user) {
-      navigate('/');
+      window.location.href = '/'
     }
     if (status !== 400) return
     toast.error('Hãy đăng nhập lại', {
