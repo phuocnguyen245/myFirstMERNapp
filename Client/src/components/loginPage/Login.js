@@ -26,19 +26,20 @@ const Login = () => {
 
   // get Token and save to cookie
   const token = useSelector(state => state.loginpage.accessToken)
+
   token && Cookies.set('accessToken', token, {
+    expires: 1 / 12,
+    secure: true
+  })
+
+  user && Cookies.set('address', user?.address, {
     expires: 1 / 12,
     secure: true
   })
 
   const navigate = useNavigate()
   useEffect(() => {
-    if (user) {
-      const now = new Date().getTime();
-      localStorage.setItem('expired', now * 2)
-      localStorage.setItem('address', user.address)
-      window.location.href = '/'
-    }
+    user && (window.location.href = '/')
     if (status !== 400) return
     toast.error('Hãy đăng nhập lại', {
       position: "top-right",
@@ -69,9 +70,10 @@ const Login = () => {
   }
 
   return (
-    <div className="login-form">
+    <div className="login-form loader">
+      {/* <img src="/assets/gif/Spinner-1s-203px.gif" alt="" width="250" /> */}
       <div className="container">
-        <div className="login-container">
+        <div className="login-container ">
           <h4 className="heading">Sign in</h4>
           <div className="button-group">
             <div className="button-control">
@@ -137,6 +139,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+
   )
 }
 

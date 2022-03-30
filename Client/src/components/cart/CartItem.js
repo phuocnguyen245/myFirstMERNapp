@@ -1,25 +1,25 @@
 import Cookies from 'js-cookie';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AiOutlineHeart, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
 import { FormattedNumber, IntlProvider } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { deleteCartItemFetch, putShopQtyFetch } from './cartSlice';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
-const CartItem = ({ product_ID, name, qty, cost, img, slug, checkAll, cartItem_ID }) => {
+const CartItem = ({ product_ID, name, qty, cost, img, slug, checkAll, cartItem_ID, handleIdChecked, isCheck }) => {
     const accessToken = Cookies.get('accessToken')
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const [counter, setCounter] = useState(qty)
-    const [check, setCheck] = useState(checkAll)
 
     const [change, setChange] = useState(false)
-    const [quantity, setQuantity] = useState(counter)
+
+    const [check, setCheck] = useState(isCheck)
 
     const handleDecrease = (product_ID) => {
         setCounter(counter - 1)
@@ -77,10 +77,17 @@ const CartItem = ({ product_ID, name, qty, cost, img, slug, checkAll, cartItem_I
         })
 
     }
+
+    const handleCheck = (product_ID,) => {
+        setCheck(!check)
+        handleIdChecked(product_ID, !check)
+    }
     return (
         <div className="cart-item d-flex justify-content-between align-items-center" >
             <div className="product-left d-flex justify-content-between align-items-center">
-                <input type="checkbox" checked={checkAll || check} onChange={() => setCheck(!check)} />
+                <input type="checkbox"
+                    checked={(checkAll || check)}
+                    onChange={() => handleCheck(product_ID)} />
                 <Link to={`/product/${slug}`} >
                     <img src={`./assets/img/${img}`} alt="" />
                 </Link>

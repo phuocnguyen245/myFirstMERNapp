@@ -3,8 +3,8 @@ import { CartItem } from "../models/cartModel.js";
 import { Shops } from "../models/shopsModel.js";
 
 export const renderCart = async (req, res) => {
-    const { accessToken } = req.body
     try {
+        const { accessToken } = req.body
         if (accessToken) {
             const { id } = jwt_decode(accessToken)
             const mergerCartItemAndShops = await CartItem.find({ user_ID: id })
@@ -16,10 +16,11 @@ export const renderCart = async (req, res) => {
                     img: d.product_ID.img,
                     name: d.product_ID.shopName,
                     qty: d.qty,
-                    cost: d.cost,
+                    cost: d.product_ID.cost,
                     _id: d.product_ID._id,
                     slug: d.product_ID.slug,
-                    cartItem_ID: d._id
+                    cartItem_ID: d._id,
+                    isCheck: d.isCheck
                 }
             })
             return res.send({ data, length: data.length })
@@ -36,8 +37,7 @@ export const addToCart = async (req, res) => {
         const { slug, qty, accessToken } = req.body
         const { id: user_ID } = jwt_decode(accessToken)
         const shop = await Shops.find({ slug })
-        const { _id: shopID, cost } = shop.find(s => s._id)
-        console.log(cost);
+        const { _id: shopID } = shop.find(s => s._id)
         const isHave = await CartItem.find({ product_ID: shopID })
         if (isHave.length === 1) {
             const cartItemID = isHave.map(item => item._id)
@@ -46,7 +46,7 @@ export const addToCart = async (req, res) => {
             await cartItem.save()
         } else {
             const cartItem = new CartItem({
-                product_ID: shopID, qty, user_ID, cost
+                product_ID: shopID, qty, user_ID
             })
             await cartItem.save()
         }
@@ -78,5 +78,26 @@ export const handleDeleteCartItem = async (req, res) => {
         await CartItem.findByIdAndDelete(id)
     } catch (error) {
         res.send(400)
+    }
+}
+
+export const getCartTotal = async (req, res) => {
+    try {
+        const { checked, accessToken, isCheck } = req.body
+        if (accessToken) {
+            const { id } = jwt_decode(accessToken)
+            const mergerCartItemAndShops = await CartItem.find({ user_ID: id, product_ID: checked })
+                .populate({
+                    path: 'product_ID',
+                })
+            await CartItem.findOneAndUpdate({ user_ID: id, product_ID: checked }, {
+                isCheck
+            })
+            const total = mergerCartItemAndShops.reduce((a, b) => a + b.product_ID.cost, 0)
+            console.log(total);
+            res.send({ total })
+        }
+    } catch (error) {
+        console.log(error);
     }
 }

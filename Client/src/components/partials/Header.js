@@ -10,6 +10,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const user = useSelector(state => state.loginpage.user)
+
   const length = useSelector(state => state.shop.length)
   const categories = useSelector(state => state.homepage.categories)
 
@@ -19,12 +20,13 @@ const Header = () => {
   const [shopItemLenght, setShopItemLenght] = useState(0)
 
   user && localStorage.setItem('account', JSON.stringify(user?.username))
+  // save address to cookie
   const username = localStorage.getItem('account')
 
   const handleClick = async () => {
     Cookies.remove('accessToken')
-    localStorage.removeItem('account');
-    localStorage.removeItem('expired')
+    Cookies.remove('address')
+    localStorage.clear();
     setShopItemLenght(0)
     window.location.href = '/login'
   }
@@ -43,17 +45,6 @@ const Header = () => {
   useEffect(() => {
     setShopItemLenght(length)
   }, [length])
-
-
-  useEffect(() => {
-    const now = new Date().getTime();
-    const expired = localStorage.getItem('expired');
-    if (now > expired) {
-      localStorage.removeItem('account');
-      localStorage.removeItem('expired')
-    }
-  })
-
 
   const handleCartClick = () => {
     if (accessToken) {

@@ -14,12 +14,10 @@ const cartItem = new Schema({
         type: Number,
         require: true
     },
-    cost: {
-        type: Number,
+    isCheck: {
+        type: Boolean,
+        default: false,
         require: true
-    },
-    img: {
-        type: String,
     }
 }, {
     timestamps: true

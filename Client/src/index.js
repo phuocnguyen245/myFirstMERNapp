@@ -12,6 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import './style/index.css';
 import './style/loginForm.scss';
 import './style/main.scss';
+import './style/loader.css'
 
 
 ReactDOM.render(

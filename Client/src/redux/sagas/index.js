@@ -4,7 +4,7 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { getCategoriesSuccess, getHomepageDataFetch, getSearchFetch, getSearchSuccess, getShopsSuccess } from '../../components/homepage/homePageSlice'
 import { getUserInfoFailure, getUserInfoFetch, getUserInfoSuccess } from '../../components/loginPage/loginSlice'
 import { addToCartFailure, addToCartFetch, addToCartSuccess, getCartItemFailure, getCartItemFetch, getCartItemSuccess } from '../../components/shop/shopSlice'
-import { putShopQtyFetch, putShopQtySuccess, putShopQtyFailure, deleteCartItemFetch, deleteCartItemFailure } from '../../components/cart/cartSlice'
+import { putShopQtyFetch, putShopQtySuccess, putShopQtyFailure, deleteCartItemFetch, deleteCartItemFailure, getCartTotalFetch, getCartTotalFailure } from '../../components/cart/cartSlice'
 import { URL } from '../../constants'
 const header = Cookies.get('accessToken')
 
@@ -58,7 +58,6 @@ function* getCartItem(action) {
             const data = yield fetch.data
             yield put(getCartItemSuccess(data))
         }
-
     } catch (error) {
         yield put(getCartItemFailure(400))
     }
@@ -78,7 +77,6 @@ function* putShopQty(action) {
 
 function* deleteCartItem(action) {
     try {
-
         const fetch = yield call(() => axios.delete(`${URL}/cart/delete-cart-item/${action.payload}`,
             { headers: { authorization: `Bearer ${header}` } }
         ))
@@ -86,6 +84,21 @@ function* deleteCartItem(action) {
         yield put(putShopQtySuccess(data))
     } catch (error) {
         yield put(deleteCartItemFailure(400))
+    }
+}
+
+function* getCartTotal(action) {
+    try {
+        if (header) {
+            const fetch = yield call(() =>
+                axios.post(`${URL}/cart/get-cart-total`, action.payload,
+                    { headers: { authorization: `Bearer ${header}` } }
+                ))
+            const data = yield fetch.data
+            yield put(getCartItemSuccess(data))
+        }
+    } catch (error) {
+        yield put(getCartTotalFailure(400))
     }
 }
 
@@ -101,5 +114,6 @@ function* mySaga() {
 
     yield takeEvery(putShopQtyFetch.toString(), putShopQty)
     yield takeEvery(deleteCartItemFetch.toString(), deleteCartItem)
+    yield takeLatest(getCartTotalFetch.toString(), getCartTotal)
 }
 export default mySaga;

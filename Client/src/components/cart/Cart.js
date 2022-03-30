@@ -1,27 +1,54 @@
+import Cookies from 'js-cookie';
 import React, { useEffect, useState } from "react";
 import { GoLocation } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import SearchContainer from "../homepage/searchContainer/SearchContainer";
 import CartItem from "./CartItem";
-import Cookies from 'js-cookie'
+import { getCartTotalFetch } from './cartSlice';
 import "./style.scss";
+const MySwal = withReactContent(Swal)
+
 const Cart = () => {
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const { cartItems } = useSelector(state => state.shop)
 
   const accessToken = Cookies.get('accessToken')
 
-  const address = localStorage.getItem('address')
+  const address = Cookies.get('address')
 
   const [checkAll, setCheckAll] = useState(false)
-
+  const [checkedID, setCheckedID] = useState([])
   useEffect(() => {
     if (!accessToken) {
       navigate('/login')
     }
   }, [navigate, accessToken])
+
+  const handleClick = () => {
+
+  }
+
+  const handleIdChecked = (id, isCheck) => {
+    setCheckedID(prev => {
+      const isChecked = checkedID?.includes(id)
+      if (isChecked) {
+        const checked = checkedID?.filter(idChecked => idChecked !== id)
+        dispatch(getCartTotalFetch({ checked, accessToken, isCheck: !isChecked }))
+        return checkedID?.filter(idChecked => idChecked !== id)
+      } else {
+        const checked = [...prev, id]
+        dispatch(getCartTotalFetch({ checked, accessToken, isCheck: isCheck }))
+        return [...prev, id]
+      }
+    })
+  }
+
+  useEffect(() => {
+  }, [checkedID, dispatch, accessToken])
 
   return (
     <div className="cart">
@@ -51,7 +78,8 @@ const Cart = () => {
             <div className="left__list">
               {cartItems && cartItems.map(item =>
                 <CartItem product_ID={item._id} name={item.name} key={item._id} cost={item.cost}
-                  qty={item.qty} img={item.img} slug={item.slug} cartItem_ID={item.cartItem_ID} checkAll={checkAll}
+                  qty={item.qty} img={item.img} slug={item.slug} cartItem_ID={item.cartItem_ID}
+                  isCheck={item.isCheck} checkAll={checkAll} handleIdChecked={handleIdChecked}
                 />)}
             </div>
           </div>
@@ -87,7 +115,7 @@ const Cart = () => {
                 <p>Tổng cộng</p>
                 <p>15000đ</p>
               </div>
-              <button>
+              <button onClick={handleClick}>
                 Xác nhận thanh toán
               </button>
             </div>
