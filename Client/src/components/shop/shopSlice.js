@@ -4,7 +4,8 @@ export const shopSlice = createSlice({
     initialState: {
         length: 0,
         cartItems: null,
-        status: 0
+        status: 0,
+        total: 0,
     },
     reducers: {
         // handle Add to Card
@@ -23,6 +24,7 @@ export const shopSlice = createSlice({
         getCartItemSuccess: (state, action) => {
             state.length = action.payload.length
             state.cartItems = action.payload.data
+            state.total = action.payload.total
         },
         getCartItemFailure: (state, action) => {
             state.status = action.payload

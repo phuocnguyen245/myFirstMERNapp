@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineHeart, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
 import { FormattedNumber, IntlProvider } from 'react-intl';
@@ -25,11 +25,13 @@ const CartItem = ({ product_ID, name, qty, cost, img, slug, checkAll, cartItem_I
         setCounter(counter - 1)
         setChange(false)
         dispatch(putShopQtyFetch({ product_ID, qty: counter + 1, accessToken }))
+        
     }
     const handleIncrease = (product_ID) => {
         setCounter(counter + 1)
         setChange(false)
         dispatch(putShopQtyFetch({ product_ID, qty: counter + 1, accessToken }))
+        dispatch()
     }
     if (counter < 1) {
         setCounter(1)

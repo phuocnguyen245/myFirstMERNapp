@@ -11,6 +11,13 @@ export const renderCart = async (req, res) => {
                 .populate({
                     path: 'product_ID',
                 })
+
+            const getCartItem = await CartItem.find({ user_ID: id, isCheck: true })
+                .populate({
+                    path: 'product_ID',
+                })
+            const total = getCartItem.reduce((a, b) => a + b.product_ID.cost * b.qty, 0)
+
             const data = mergerCartItemAndShops.map(d => {
                 return {
                     img: d.product_ID.img,
@@ -23,7 +30,7 @@ export const renderCart = async (req, res) => {
                     isCheck: d.isCheck
                 }
             })
-            return res.send({ data, length: data.length })
+            return res.send({ data, length: getCartItem.length, total })
         } else {
             res.sendStatus(400)
         }
@@ -83,19 +90,19 @@ export const handleDeleteCartItem = async (req, res) => {
 
 export const getCartTotal = async (req, res) => {
     try {
-        const { checked, accessToken, isCheck } = req.body
+        const { accessToken, isCheck, id: product_ID } = req.body
         if (accessToken) {
             const { id } = jwt_decode(accessToken)
-            const mergerCartItemAndShops = await CartItem.find({ user_ID: id, product_ID: checked })
+            await CartItem.findOneAndUpdate({ user_ID: id, product_ID: product_ID }, {
+                isCheck
+            })
+
+            const getCartItem = await CartItem.find({ user_ID: id, isCheck: true })
                 .populate({
                     path: 'product_ID',
                 })
-            await CartItem.findOneAndUpdate({ user_ID: id, product_ID: checked }, {
-                isCheck
-            })
-            const total = mergerCartItemAndShops.reduce((a, b) => a + b.product_ID.cost, 0)
-            console.log(total);
-            res.send({ total })
+            const total = getCartItem.reduce((a, b) => a + b.product_ID.cost * b.qty, 0)
+            res.send({ total, length: getCartItem.length })
         }
     } catch (error) {
         console.log(error);

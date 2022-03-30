@@ -20,6 +20,7 @@ const Header = () => {
   const [shopItemLenght, setShopItemLenght] = useState(0)
 
   user && localStorage.setItem('account', JSON.stringify(user?.username))
+
   // save address to cookie
   const username = localStorage.getItem('account')
 
@@ -39,8 +40,10 @@ const Header = () => {
   useEffect(() => {
     if (accessToken) {
       dispatch(getCartItemFetch({ accessToken }))
+    }else{
+      accessToken === undefined && localStorage.clear()
     }
-  })
+  }, [accessToken, dispatch])
 
   useEffect(() => {
     setShopItemLenght(length)

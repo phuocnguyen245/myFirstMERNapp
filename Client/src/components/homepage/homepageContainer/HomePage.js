@@ -5,6 +5,7 @@ import LeftHomePage from './LeftHomePage'
 import RightHomePage from './RightHomePage';
 
 const HomePage = () => {
+    
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getHomepageDataFetch())

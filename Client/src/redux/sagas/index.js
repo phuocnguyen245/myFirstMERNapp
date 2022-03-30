@@ -4,7 +4,7 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { getCategoriesSuccess, getHomepageDataFetch, getSearchFetch, getSearchSuccess, getShopsSuccess } from '../../components/homepage/homePageSlice'
 import { getUserInfoFailure, getUserInfoFetch, getUserInfoSuccess } from '../../components/loginPage/loginSlice'
 import { addToCartFailure, addToCartFetch, addToCartSuccess, getCartItemFailure, getCartItemFetch, getCartItemSuccess } from '../../components/shop/shopSlice'
-import { putShopQtyFetch, putShopQtySuccess, putShopQtyFailure, deleteCartItemFetch, deleteCartItemFailure, getCartTotalFetch, getCartTotalFailure } from '../../components/cart/cartSlice'
+import { putShopQtyFetch, putShopQtySuccess, putShopQtyFailure, deleteCartItemFetch, deleteCartItemFailure, getCartTotalFetch, getCartTotalFailure, getCartTotalSuccess } from '../../components/cart/cartSlice'
 import { URL } from '../../constants'
 const header = Cookies.get('accessToken')
 
@@ -95,7 +95,7 @@ function* getCartTotal(action) {
                     { headers: { authorization: `Bearer ${header}` } }
                 ))
             const data = yield fetch.data
-            yield put(getCartItemSuccess(data))
+            yield put(getCartTotalSuccess(data))
         }
     } catch (error) {
         yield put(getCartTotalFailure(400))

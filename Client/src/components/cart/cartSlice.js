@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        status: 0
+        status: 0,
+        total: 0,
+        length: 0,
     },
     reducers: {
         //Change Qty
@@ -30,7 +32,8 @@ export const cartSlice = createSlice({
             state.status = action.payload
         },
         getCartTotalSuccess: (state, action) => {
-            state.status = action.payload.total
+            state.total = action.payload.total
+            state.length = action.payload.length
         },
         getCartTotalFailure: (state, action) => {
             state.status = action.payload

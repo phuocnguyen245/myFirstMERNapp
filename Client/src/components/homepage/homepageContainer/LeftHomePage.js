@@ -9,7 +9,6 @@ const LeftHomePage = () => {
 
   const leftRef = useRef()
 
-
   useEffect(() => {
     const onLoad = () => {
       const leftHeight = leftRef.current.getBoundingClientRect().height
