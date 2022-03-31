@@ -41,6 +41,13 @@
       "react-app"
     ]
   },
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@emotion"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",

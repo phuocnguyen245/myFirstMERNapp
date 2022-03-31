@@ -15,20 +15,18 @@ const MySwal = withReactContent(Swal)
 const Cart = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { cartItems } = useSelector(state => state.shop)
   const accessToken = Cookies.get('accessToken')
-
   const address = Cookies.get('address')
 
-  const [checkAll, setCheckAll] = useState(false)
-  const [checkedID, setCheckedID] = useState([])
-
+  const { cartItems } = useSelector(state => state.shop)
   const { total, length } = useSelector(state => state.shop)
-
   const { total: changeTotal, length: changeLength } = useSelector(state => state.cart)
 
   const [totalCost, setTotalCost] = useState(0)
   const [cartQuantity, setCartQuantity] = useState(0)
+  const [checkAll, setCheckAll] = useState(false)
+  const [checkedID, setCheckedID] = useState([])
+
   useEffect(() => {
     setTotalCost(total)
     setCartQuantity(length)
@@ -58,11 +56,12 @@ const Cart = () => {
   }
 
   const handleClickQty = (id, isCheck, counter) => {
-
+    dispatch(getCartTotalFetch({accessToken, id, isCheck }))
   }
-  
+
   return (
     <IntlProvider locale={'vi'} defaultLocale={'vi'}>
+
       <div className="cart">
         <div className="container">
           <div className="cart__header d-flex justify-content-between align-items-center">
@@ -92,6 +91,7 @@ const Cart = () => {
                   <CartItem product_ID={item._id} name={item.name} key={item._id} cost={item.cost}
                     qty={item.qty} img={item.img} slug={item.slug} cartItem_ID={item.cartItem_ID}
                     isCheck={item.isCheck} checkAll={checkAll} handleIdChecked={handleIdChecked}
+                    handleClickQty={handleClickQty}
                   />)}
               </div>
             </div>

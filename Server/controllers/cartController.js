@@ -30,7 +30,7 @@ export const renderCart = async (req, res) => {
                     isCheck: d.isCheck
                 }
             })
-            return res.send({ data, length: getCartItem.length, total })
+            return res.send({ data, length: mergerCartItemAndShops.length, total })
         } else {
             res.sendStatus(400)
         }
@@ -83,6 +83,7 @@ export const handleDeleteCartItem = async (req, res) => {
     try {
         const { id } = req.params
         await CartItem.findByIdAndDelete(id)
+        res.send('Delete successfully')
     } catch (error) {
         res.send(400)
     }

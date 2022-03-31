@@ -40,7 +40,7 @@ const Header = () => {
   useEffect(() => {
     if (accessToken) {
       dispatch(getCartItemFetch({ accessToken }))
-    }else{
+    } else {
       accessToken === undefined && localStorage.clear()
     }
   }, [accessToken, dispatch])
