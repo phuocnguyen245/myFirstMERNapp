@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import SearchContainer from "../homepage/searchContainer/SearchContainer";
 import CartItem from "./CartItem";
-import { getCartTotalFetch } from './cartSlice';
+import { deleteAllItemFetch, getCartTotalFetch } from './cartSlice';
 import "./style.scss";
 const MySwal = withReactContent(Swal)
 
@@ -56,9 +56,44 @@ const Cart = () => {
   }
 
   const handleClickQty = (id, isCheck, counter) => {
-    dispatch(getCartTotalFetch({accessToken, id, isCheck }))
+    dispatch(getCartTotalFetch({ accessToken, id, isCheck }))
   }
 
+  const deleteAll = () => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure to delete all item?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteAllItemFetch(accessToken));
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Cart Items has been deleted.',
+          'success'
+        );
+        setTimeout(() => navigate(0), 1000)
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Cart Item is safe :)',
+          'error'
+        );
+      }
+    });
+  }
+  
   return (
     <IntlProvider locale={'vi'} defaultLocale={'vi'}>
 
@@ -79,7 +114,7 @@ const Cart = () => {
                     Chọn tất cả
                   </p>
                 </div>
-                <div className="left__button--delete d-flex justify-content-between align-items-center">
+                <div className="left__button--delete d-flex justify-content-between align-items-center" onClick={deleteAll}>
                   <i className="fas fa-trash-alt"></i>
                   <p className="m-0 ml-1">
                     Xóa

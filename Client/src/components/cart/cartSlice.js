@@ -37,6 +37,15 @@ export const cartSlice = createSlice({
         },
         getCartTotalFailure: (state, action) => {
             state.status = action.payload
+        },
+        deleteAllItemFetch: (state, action) => {
+            state.status = action.payload
+        },
+        deleteAllItemSuccess: (state, action) => {
+            state.status = action.payload
+        },
+        deleteAllItemFailure: (state, action) => {
+            state.status = action.payload
         }
     }
 })
@@ -50,7 +59,11 @@ export const {
     deleteCartItemFailure,
     getCartTotalFetch,
     getCartTotalSuccess,
-    getCartTotalFailure
+    getCartTotalFailure,
+    deleteAllItemFetch,
+    deleteAllItemSuccess,
+    deleteAllItemFailure
+
 } = cartSlice.actions
 
 export default cartSlice.reducer

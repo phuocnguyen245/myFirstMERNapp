@@ -109,3 +109,15 @@ export const getCartTotal = async (req, res) => {
         console.log(error);
     }
 }
+
+export const handleDeleteAllItems = async (req, res) => {
+    try {
+        const { id } = req.params
+        if (id) {
+            const { id: user_ID } = jwt_decode(id)
+            await CartItem.deleteMany({ user_ID })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
