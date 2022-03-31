@@ -5,18 +5,18 @@ import LeftHomePage from './LeftHomePage'
 import RightHomePage from './RightHomePage';
 
 const HomePage = () => {
-    
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getHomepageDataFetch())
-    }, [dispatch])
 
-    return (
-        <div>
-            <LeftHomePage />
-            <RightHomePage />
-        </div>
-    )
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getHomepageDataFetch())
+  }, [dispatch])
+
+  return (
+    <div>
+      <LeftHomePage />
+      <RightHomePage />
+    </div>
+  )
 }
 
 export default HomePage

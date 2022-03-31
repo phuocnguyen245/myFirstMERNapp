@@ -49,7 +49,12 @@ const Header = () => {
     setShopItemLenght(length)
   }, [length])
 
+  const handleHomeClick = () => {
+    dispatch(getCartItemFetch({ accessToken }))
+  }
+  
   const handleCartClick = () => {
+    dispatch(getCartItemFetch({ accessToken }))
     if (accessToken) {
       navigate('/cart')
     } else {
@@ -71,7 +76,7 @@ const Header = () => {
         <div className="container p-2">
           <div className="row p-2 justify-content-between align-items-center">
             <div className="p-0">
-              <Link to="/">
+              <Link to="/" onClick={handleHomeClick}>
                 <img className="shopeefoodlogo" src="/assets/img/shopeefoodvn.png" alt="" />
               </Link>
             </div>

@@ -100,7 +100,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(submitForm)} className="form" id="form-1">
             <div className="form-group">
               <i className="far fa-envelope" />
-              <input id="username" type="text" placeholder="Username or Email"
+              <input id="username" type="text" placeholder="Username"
                 className="form-control"
                 {...register("username", { onChange: () => handleChange() })}
               />
@@ -132,6 +132,12 @@ const Login = () => {
               pauseOnHover
             />
           </form>
+          <div className="d-flex justify-content-center align-items-center mt-3">
+            <p className="m-0">Bạn mới biết đến ShopeeFood?</p>
+            <Link to="/register" style={{
+              color: '#ff7645',
+            }} className="ml-2 ">Đăng ký</Link>
+          </div>
           <div className="login-policy">
             <p>Chúng tôi không sử dụng thông tin của bạn với bất kỳ mục đích nào. Bằng cách đăng nhập
               hoặc đăng ký, bạn đồng ý với <a href="/#"><u>Chính sách quy định của Foody</u></a></p>
@@ -139,7 +145,6 @@ const Login = () => {
         </div>
       </div>
     </div>
-
   )
 }
 

@@ -6,13 +6,14 @@ import App from './App';
 import Cart from './components/cart/Cart';
 import HomePage from './components/homepage/homepageContainer/HomePage';
 import Login from './components/loginPage/Login';
+import Register from './components/register/Register';
 import Shop from './components/shop/Shop';
 import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
 import './style/index.css';
+import './style/loader.css';
 import './style/loginForm.scss';
 import './style/main.scss';
-import './style/loader.css'
 
 
 ReactDOM.render(
@@ -24,6 +25,7 @@ ReactDOM.render(
             <Route path='/' element={<HomePage />}></Route>
             <Route path='product/:slug' element={<Shop />} />
             <Route path='login' element={<Login />}></Route>
+            <Route path='register' element={<Register />}></Route>
             <Route path='cart' element={<Cart />}></Route>
           </Route>
         </Routes>

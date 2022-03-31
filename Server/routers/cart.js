@@ -2,7 +2,7 @@ import express from 'express';
 import verify from '../middleware/auth/auth.js';
 import {
     addToCart, renderCart, handleChangeQuantity, handleDeleteCartItem, getCartTotal,
-    handleDeleteAllItems
+    handleDeleteAllItems, handleCheckOut
 } from '../controllers/cartController.js';
 const router = express.Router()
 
@@ -12,4 +12,5 @@ router.put('/change-qty', verify, handleChangeQuantity)
 router.delete('/delete-cart-item/:id', handleDeleteCartItem)
 router.post('/get-cart-total', getCartTotal)
 router.delete('/delete-all-item/:id', handleDeleteAllItems)
+router.post('/check-out', handleCheckOut)
 export default router

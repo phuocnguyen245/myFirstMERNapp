@@ -8,13 +8,13 @@ import mySaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware()
 const store = configureStore({
-    reducer: {
-        homepage: homePageSlice,
-        loginpage: loginpageSlice,
-        shop: shopSlice,
-        cart: cartSlice
-    },
-    middleware: [sagaMiddleware]
+  reducer: {
+    homepage: homePageSlice,
+    loginpage: loginpageSlice,
+    shop: shopSlice,
+    cart: cartSlice
+  },
+  middleware: [sagaMiddleware]
 })
 sagaMiddleware.run(mySaga)
 

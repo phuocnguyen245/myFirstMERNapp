@@ -4,7 +4,7 @@ $blue: #0288d1;
 .login-form {
   margin-top: 60px;
   padding: 40px;
-  background: url('../../public/assets/img/main-banner.jpg');
+  background: url("../../public/assets/img/main-banner.jpg");
   height: 100vh;
   .login-container {
     width: calc(50% + 30px);
@@ -61,16 +61,7 @@ $blue: #0288d1;
         }
       }
     }
-    .login-alert {
-      // display: none;
-      margin-top: 10px;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      background-color: #f2dede;
-      text-align: left;
-      transition: 0.5s;
-    }
+
     .p-title {
       font-size: 13px;
       margin: 10px 0 10px;
@@ -147,6 +138,16 @@ $blue: #0288d1;
     color: #fff !important;
   }
 }
+.login-alert {
+  // display: none;
+  margin-top: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #f2dede;
+  text-align: left;
+  transition: 0.5s;
+}
 @media (min-width: 740px) and (max-width: 1024px) {
   .login-form {
     .container {
@@ -164,7 +165,7 @@ $blue: #0288d1;
   .login-form {
     margin: 0;
     padding: auto 20px;
-    background: url('../../public/assets/img/bg-login.jpg');
+    background: url("../../public/assets/img/bg-login.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: repeat;

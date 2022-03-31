@@ -40,6 +40,7 @@ const Shop = () => {
 
   const { slug } = params
   const accessToken = Cookies.get('accessToken')
+  
   useEffect(() => {
     const getData = async () => {
       const fetch = await axios.get(`https://shopeefood.herokuapp.com/api/product/${slug}`)
@@ -59,7 +60,6 @@ const Shop = () => {
       setTimeout(() => {
         setBtnStyle(false)
         setText("Thêm vào giỏ hàng")
-        btn.current.style.transition = '3s'
       }, 3000)
       toast.success('Thêm thành công', {
         position: "top-right",

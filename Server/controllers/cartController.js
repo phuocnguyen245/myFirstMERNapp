@@ -1,6 +1,8 @@
 import jwt_decode from "jwt-decode";
 import { CartItem } from "../models/cartModel.js";
+import { Orders } from "../models/orderModel.js";
 import { Shops } from "../models/shopsModel.js";
+import { Users } from "../models/usersModel.js";
 
 export const renderCart = async (req, res) => {
     try {
@@ -11,11 +13,13 @@ export const renderCart = async (req, res) => {
                 .populate({
                     path: 'product_ID',
                 })
+            const userInfo = await Users.findById(id)
 
             const getCartItem = await CartItem.find({ user_ID: id, isCheck: true })
                 .populate({
                     path: 'product_ID',
                 })
+
             const total = getCartItem.reduce((a, b) => a + b.product_ID.cost * b.qty, 0)
 
             const data = mergerCartItemAndShops.map(d => {
@@ -30,7 +34,14 @@ export const renderCart = async (req, res) => {
                     isCheck: d.isCheck
                 }
             })
-            return res.send({ data, length: mergerCartItemAndShops.length, total })
+            const { password, role, ...rest } = userInfo._doc
+            const userData = {
+                rest
+            }
+            return res.send({
+                data, length: mergerCartItemAndShops.length,
+                initLength: getCartItem.length, total, userData
+            })
         } else {
             res.sendStatus(400)
         }
@@ -73,7 +84,7 @@ export const handleChangeQuantity = async (req, res) => {
         }, {
             qty
         });
-        res.send(200)
+        res.sendStatus(200)
     } catch (error) {
         console.log(error);
     }
@@ -116,6 +127,43 @@ export const handleDeleteAllItems = async (req, res) => {
         if (id) {
             const { id: user_ID } = jwt_decode(id)
             await CartItem.deleteMany({ user_ID })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const handleCheckOut = async (req, res) => {
+    try {
+        const { userInfo, accessToken } = req.body
+        if (accessToken) {
+            const { id } = jwt_decode(accessToken)
+            const productCheckout = await CartItem.find({ user_ID: id, isCheck: true })
+                .populate({
+                    path: 'product_ID',
+                })
+            let array = []
+            productCheckout.map(product => {
+                const products = {
+                    product_ID: product.product_ID._id,
+                    qty: product.qty,
+                    cost: product.product_ID.cost
+                }
+                array.push(products)
+            })
+            const order = new Orders({
+                products: array,
+                user_ID: id,
+                isPay: false,
+                userInfo: {
+                    address: userInfo.address,
+                    tel: userInfo.tel
+                },
+                status: 1
+            })
+            await order.save()
+            await CartItem.deleteMany({ user_ID: id, isCheck: true })
+            res.send('Buy successfully')
         }
     } catch (error) {
         console.log(error);
