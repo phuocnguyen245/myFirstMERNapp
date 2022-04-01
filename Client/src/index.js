@@ -8,6 +8,9 @@ import HomePage from './components/homepage/homepageContainer/HomePage';
 import Login from './components/loginPage/Login';
 import Register from './components/register/Register';
 import Shop from './components/shop/Shop';
+import Purchase from './components/user/purchase/Purchase';
+import PurchaseType from './components/user/purchase/PurchaseType';
+import User from './components/user/User';
 import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
 import './style/index.css';
@@ -27,6 +30,11 @@ ReactDOM.render(
             <Route path='login' element={<Login />}></Route>
             <Route path='register' element={<Register />}></Route>
             <Route path='cart' element={<Cart />}></Route>
+            <Route path='user' element={<User />}>
+              <Route path='purchase' element={<Purchase />}>
+                <Route path='type-:type' element={<PurchaseType />}></Route>
+              </Route>
+            </Route>
           </Route>
         </Routes>
       </Provider>

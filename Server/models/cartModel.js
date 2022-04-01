@@ -18,6 +18,11 @@ const cartItem = new Schema({
         type: Boolean,
         default: false,
         require: true
+    },
+    isDetele: {
+        type: Boolean,
+        default: false,
+        require: true
     }
 }, {
     timestamps: true

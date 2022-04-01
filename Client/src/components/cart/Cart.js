@@ -176,7 +176,7 @@ console.log(userData);
                 </div>
                 <div className="d-flex justify-content-start align-items-center">
                   <IoCallSharp />
-                  <input type="tel" className="info m-0 ml-3" value={tel || ''} onChange={e => setTel(e.target.value)} />
+                  <input type="tel" className="info m-0 ml-3" value={`0${tel}` || ''} onChange={e => setTel(e.target.value)} />
                 </div>
               </div>
               <div className="right__mid">

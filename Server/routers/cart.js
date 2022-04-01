@@ -13,4 +13,5 @@ router.delete('/delete-cart-item/:id', handleDeleteCartItem)
 router.post('/get-cart-total', getCartTotal)
 router.delete('/delete-all-item/:id', handleDeleteAllItems)
 router.post('/check-out', handleCheckOut)
+
 export default router

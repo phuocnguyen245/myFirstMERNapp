@@ -7,9 +7,7 @@ header {
     z-index: 99;
     background-color: #fff;
     height: 60px;
-    box-shadow: 0 2px 2px 0
-        rgba(0, 0, 0, 0.2),
-      0 4px 15px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
     z-index: 200;
     .container {
       .dropdown {
@@ -20,8 +18,7 @@ header {
           padding: 0;
           border-radius: 4px;
           .dropdown-item {
-            border-bottom: 1px solid
-              #ccc;
+            border-bottom: 1px solid #ccc;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -41,8 +38,7 @@ header {
         display: flex;
         cursor: pointer;
         padding: 10px 12px;
-        border-bottom: 4px solid
-          transparent;
+        border-bottom: 4px solid transparent;
         a {
           color: $primary-textColor;
           height: fit-content;
@@ -86,17 +82,57 @@ header {
         }
       }
       .btn-login {
+        position: relative;
+        cursor: pointer;
         .btn {
           color: $primary-color;
           background: #fff;
-          border: 1px solid
-            $primary-color;
+          border: 1px solid $primary-color;
           box-shadow: none;
           outline: none;
           &:hover {
-            box-shadow: 2px 2px 4px
-              $primary-color;
+            box-shadow: 2px 2px 4px $primary-color;
           }
+        }
+        .user-control {
+          display: none;
+          position: absolute;
+          top: calc(100% + 15px);
+          background-color: #fff;
+          list-style: none;
+          width: 200px;
+          padding: 0;
+          right: 0;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+            rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+            rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+          li {
+            // background-color: red;
+            padding: 8px 12px;
+            &:hover, a:hover{
+              transition: .2s;
+              color: rgb(244, 136, 136);
+              background: rgb(243, 239, 239);
+            }
+            a{
+              display: block;
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+          &:before {
+            content: "0";
+            position: absolute;
+            width: 200px;
+            color: transparent;
+            background: transparent;
+            top: -20px;
+          }
+        }
+        &:hover .user-control {
+          display: block;
+          transform-origin: top right;
+          animation: move ease-in 0.2s;
         }
       }
     }
@@ -290,5 +326,13 @@ footer {
   footer,
   .banner-container {
     display: none;
+  }
+}
+@keyframes move {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }

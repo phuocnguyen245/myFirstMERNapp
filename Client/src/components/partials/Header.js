@@ -52,7 +52,7 @@ const Header = () => {
   const handleHomeClick = () => {
     dispatch(getCartItemFetch({ accessToken }))
   }
-  
+
   const handleCartClick = () => {
     dispatch(getCartItemFetch({ accessToken }))
     if (accessToken) {
@@ -113,7 +113,7 @@ const Header = () => {
                 </div>
               ))}
             </nav>
-            <div className="flex align-items-center justify-content-end">
+            <div className="flex align-items-center justify-content-end mr-2">
               <div className="btn-search pr-3" onClick={handleCartClick}>
                 <i className="fas fa-shopping-cart" />
                 <div className="qty">
@@ -122,7 +122,14 @@ const Header = () => {
               </div>
               <div className="btn-login">
                 {username ?
-                  <button onClick={handleClick} className="btn">Đăng xuất {JSON.parse(username)}</button> :
+                  <div>
+                    <p className="m-0 btn">{JSON.parse(username)}</p>
+                    <ul className="user-control">
+                      <li>Tài khoản của tôi</li>
+                      <li><Link to="">Đơn hàng của tôi</Link></li>
+                      <li onClick={handleClick}>Đăng xuất</li>
+                    </ul>
+                  </div> :
                   <Link to="/login" className="btn">Đăng nhập</Link>
                 }
               </div>

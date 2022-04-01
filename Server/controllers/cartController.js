@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 import jwt_decode from "jwt-decode";
 import { CartItem } from "../models/cartModel.js";
 import { Orders } from "../models/orderModel.js";
@@ -151,6 +152,7 @@ export const handleCheckOut = async (req, res) => {
                 }
                 array.push(products)
             })
+
             const order = new Orders({
                 products: array,
                 user_ID: id,
@@ -167,5 +169,18 @@ export const handleCheckOut = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const getOrderInfor = async (req, res) => {
+    try {
+        const { type, accessToken } = req.body
+        const { id } = jwtDecode(accessToken)
+        if (type === 'all') {
+            const orders = await Orders.find({ user_id: id })
+            Orders.map
+        }
+    } catch (error) {
+        res.send('k có')
     }
 }
