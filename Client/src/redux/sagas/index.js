@@ -77,6 +77,7 @@ function* putShopQty(action) {
 
 function* deleteCartItem(action) {
   try {
+    console.log(action.payload);
     const fetch = yield call(() => axios.delete(`${URL}/cart/delete-cart-item/${action.payload}`,
       { headers: { authorization: `Bearer ${header}` } }
     ))

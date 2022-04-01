@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
 const orderSchema = new Schema({
-    products: {
+    items: {
         type: Array,
         max: 255,
         require: true

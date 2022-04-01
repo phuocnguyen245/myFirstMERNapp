@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { getCartTotalFetch } from '../cart/cartSlice'
 import { getHomepageDataFetch } from '../homepage/homePageSlice'
 import { getCartItemFetch } from '../shop/shopSlice'
 const Header = () => {
@@ -56,6 +57,8 @@ const Header = () => {
   const handleCartClick = () => {
     dispatch(getCartItemFetch({ accessToken }))
     if (accessToken) {
+      dispatch(getCartItemFetch({ accessToken }))
+      dispatch(getCartTotalFetch({ accessToken }))
       navigate('/cart')
     } else {
       toast.error('Chưa đăng nhập', {

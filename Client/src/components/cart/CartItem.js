@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { deleteCartItemFetch, putShopQtyFetch } from './cartSlice';
 import withReactContent from 'sweetalert2-react-content'
+import { getCartItemFetch } from '../shop/shopSlice';
 const MySwal = withReactContent(Swal)
 
 function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleIdChecked, isCheck, handleClickQty }) {
@@ -22,7 +23,6 @@ function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleI
   const [check, setCheck] = useState(isCheck);
 
   const handleDecrease = (product_ID) => {
-
     if (counter > 1) {
       setCounter(counter - 1);
       dispatch(putShopQtyFetch({ product_ID, qty: counter - 1, accessToken }));
@@ -96,7 +96,7 @@ function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleI
           'Cart Item has been deleted.',
           'success'
         );
-        setTimeout(() => navigate(0), 1000)
+        dispatch(getCartItemFetch({ accessToken }))
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         swalWithBootstrapButtons.fire(
           'Cancelled',

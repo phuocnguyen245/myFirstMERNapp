@@ -24,7 +24,7 @@ const Cart = () => {
   const { cartItems, initLength, total } = useSelector(state => state.shop)
   const { total: changeTotal, length: changeLength } = useSelector(state => state.cart)
   const { userData } = useSelector(state => state.shop)
-console.log(userData);
+  console.log(userData);
   const [totalCost, setTotalCost] = useState(0)
   const [cartQuantity, setCartQuantity] = useState(0)
 
@@ -57,9 +57,8 @@ console.log(userData);
   }
 
   const handleClickQty = (id, isCheck) => {
-    ;
     dispatch(getCartTotalFetch({ accessToken, id, isCheck }))
-
+    setTotalCost(changeTotal)
   }
 
   const deleteAll = () => {
@@ -104,7 +103,7 @@ console.log(userData);
     setUsername(userData?.rest?.name)
     setAddress(userData?.rest?.address)
     setTel(userData?.rest?.tel)
-  }, [userData?.rest?.username, userData?.rest?.tel, userData?.rest?.address])
+  }, [userData?.rest?.name, userData?.rest?.tel, userData?.rest?.address,])
 
   const handleClick = async () => {
     if (cartQuantity === 0) {
@@ -207,7 +206,6 @@ console.log(userData);
                 </div>
                 <div className="right__total d-flex justify-content-between align-items-center">
                   <p>Tổng cộng</p>
-                  {totalCost}
                   <p><FormattedNumber value={totalCost} style="currency" currency="VND" /></p>
                 </div>
                 <button onClick={handleClick}>

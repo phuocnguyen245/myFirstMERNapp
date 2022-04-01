@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { getCartTotalFetch } from '../cart/cartSlice'
 import StartRating from '../partials/StartRating'
 import { addToCartFetch, getCartItemFetch } from './shopSlice'
 import './style.scss'
@@ -40,7 +41,7 @@ const Shop = () => {
 
   const { slug } = params
   const accessToken = Cookies.get('accessToken')
-  
+
   useEffect(() => {
     const getData = async () => {
       const fetch = await axios.get(`https://shopeefood.herokuapp.com/api/product/${slug}`)
@@ -54,16 +55,16 @@ const Shop = () => {
   const handleClick = () => {
     if (accessToken) {
       dispatch(addToCartFetch({ slug, qty: counter, accessToken }))
-      dispatch(getCartItemFetch({ accessToken }))
+      dispatch(getCartTotalFetch({ accessToken }))
       setText("Đã thêm")
       setBtnStyle(true)
       setTimeout(() => {
         setBtnStyle(false)
         setText("Thêm vào giỏ hàng")
       }, 3000)
-      toast.success('Thêm thành công', {
-        position: "top-right",
-        autoClose: 3000,
+      toast.success('Thêm thành công!', {
+        position: "top-center",
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -74,8 +75,8 @@ const Shop = () => {
 
     } else {
       toast.error('Bạn chưa đăng nhập', {
-        position: "top-right",
-        autoClose: 1000,
+        position: "top-center",
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -86,6 +87,9 @@ const Shop = () => {
     }
   }
 
+  // useEffect(() => {
+  //   dispatch(getCartItemFetch({ accessToken }))
+  // }, [dispatch, accessToken])
 
   return (
     shop.map(s => (
@@ -140,8 +144,8 @@ const Shop = () => {
                   </div>
                 </button>
                 <ToastContainer
-                  position="top-right"
-                  autoClose={3000}
+                  position="top-center"
+                  autoClose={2000}
                   hideProgressBar={false}
                   newestOnTop={false}
                   closeOnClick
