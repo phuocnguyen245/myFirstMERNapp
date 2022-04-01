@@ -1,16 +1,16 @@
 
 import Cookies from 'js-cookie';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineHeart, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
 import { FormattedNumber, IntlProvider } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { deleteCartItemFetch, putShopQtyFetch } from './cartSlice';
-import withReactContent from 'sweetalert2-react-content'
 import { getCartItemFetch } from '../shop/shopSlice';
-const MySwal = withReactContent(Swal)
+import { deleteCartItemFetch, putShopQtyFetch } from './cartSlice';
+
+
 
 function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleIdChecked, isCheck, handleClickQty }) {
 

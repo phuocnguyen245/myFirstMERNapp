@@ -27,9 +27,7 @@ const Purchase = () => {
         </ul>
       </div>
       <SearchContainer />
-      <div className="purchase-list">
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 };

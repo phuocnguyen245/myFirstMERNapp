@@ -178,9 +178,23 @@ export const getOrderInfor = async (req, res) => {
   try {
     const { type, accessToken } = req.body
     const { id } = jwtDecode(accessToken)
-    if (type === 'all') {
+    if (type === 'wait') {
+      const orders = await Orders.find({ user_id: id, status: 1 })
+      res.send({ orders })
+    } else if (type === 'delivery') {
+      const orders = await Orders.find({ user_id: id, status: 2 })
+      res.send({ orders })
+    } else if (type === 'receive') {
+      const orders = await Orders.find({ user_id: id, status: 3 })
+      res.send({ orders })
+    }
+    else if (type === 'cancel') {
+      const orders = await Orders.find({ user_id: id, status: 4 })
+      res.send({ orders })
+    }
+    else {
       const orders = await Orders.find({ user_id: id })
-      Orders.map
+      res.send({ orders })
     }
   } catch (error) {
     res.send('k có')
