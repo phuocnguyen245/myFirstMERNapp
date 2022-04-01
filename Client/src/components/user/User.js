@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsLayoutTextSidebarReverse } from "react-icons/bs";
+import { NavLink, Outlet } from "react-router-dom";
 import "./style.scss";
 const User = () => {
   return (
@@ -16,21 +16,21 @@ const User = () => {
             <li>
               <div className="d-flex justify-content-start align-items-center p-2">
                 <AiOutlineUser />
-                <Link to="">Tài khoản của tôi</Link>
+                <NavLink to="account" className="active-link">Tài khoản của tôi</NavLink>
               </div>
               <ul className="ul-child">
                 <li className="pt-2 pb-2">
-                  <Link to="">Hồ sơ</Link>
+                  <NavLink to="">Hồ sơ</NavLink>
                 </li>
                 <li className="pt-2 pb-2">
-                  <Link to="">Đổi mật khẩu</Link>
+                  <NavLink to="">Đổi mật khẩu</NavLink>
                 </li>
               </ul>
             </li>
             <li className="p-2">
               <div className="d-flex justify-content-start align-items-center">
                 <BsLayoutTextSidebarReverse />
-                <Link to="">Đơn mua</Link>
+                <NavLink to="purchase/type-all">Đơn mua</NavLink>
               </div>
             </li>
           </ul>

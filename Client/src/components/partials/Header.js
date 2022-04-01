@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { getCartTotalFetch } from '../cart/cartSlice'
 import { getHomepageDataFetch } from '../homepage/homePageSlice'
 import { getCartItemFetch } from '../shop/shopSlice'
+import Swal from 'sweetalert2';
 const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -73,6 +74,16 @@ const Header = () => {
       setTimeout(() => navigate('/login'), 1500)
     }
   }
+  const handleAuth = () => {
+    if (!accessToken) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You are not logged yet',
+      })
+      setTimeout(() => navigate('/login'), 1500)
+    }
+  }
   return (
     <header id="header">
       <div className="container-header">
@@ -129,7 +140,7 @@ const Header = () => {
                     <p className="m-0 btn">{JSON.parse(username)}</p>
                     <ul className="user-control">
                       <li>Tài khoản của tôi</li>
-                      <li><Link to="/user/purchase/type-all">Đơn hàng của tôi</Link></li>
+                      <li><Link to="/user/purchase/type-all" onClick={handleAuth}>Đơn hàng của tôi</Link></li>
                       <li onClick={handleClick}>Đăng xuất</li>
                     </ul>
                   </div> :

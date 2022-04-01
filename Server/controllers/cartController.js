@@ -193,7 +193,7 @@ export const getOrderInfor = async (req, res) => {
       res.send({ orders })
     }
     else {
-      const orders = await Orders.find({ user_id: id })
+      const orders = await Orders.find({ user_id: id }).sort({ updatedAt: -1 })
       res.send({ orders })
     }
   } catch (error) {

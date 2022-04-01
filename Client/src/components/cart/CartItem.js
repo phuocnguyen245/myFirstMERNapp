@@ -51,7 +51,7 @@ function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleI
             'Cart Item has been deleted.',
             'success'
           );
-          setTimeout(() => navigate(0), 1000)
+          dispatch(getCartItemFetch({ accessToken }))
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire(
             'Cancelled',
