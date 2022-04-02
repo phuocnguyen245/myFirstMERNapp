@@ -5,7 +5,7 @@ import { AiOutlineHeart, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
 import { FormattedNumber, IntlProvider } from 'react-intl';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { getCartItemFetch } from '../shop/shopSlice';
 import { deleteCartItemFetch, putShopQtyFetch } from './cartSlice';
@@ -16,7 +16,6 @@ function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleI
 
   const accessToken = Cookies.get('accessToken');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [counter, setCounter] = useState(qty);
 

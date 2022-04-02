@@ -31,7 +31,7 @@ const Cart = () => {
   const [username, setUsername] = useState('')
   const [address, setAddress] = useState('')
   const [tel, setTel] = useState('')
-
+  console.log(cartItems?.length);
   useEffect(() => {
     setCartQuantity(initLength)
     document.title = "Giỏ hàng"
@@ -155,12 +155,18 @@ const Cart = () => {
                 </div>
               </div>
               <div className="left__list">
-                {cartItems && cartItems.map(item =>
+                {cartItems?.length !== 0 ? cartItems?.map(item =>
                   <CartItem product_ID={item._id} name={item.name} key={item._id} cost={item.cost}
                     qty={item.qty} img={item.img} slug={item.slug} cartItem_ID={item.cartItem_ID}
                     isCheck={item.isCheck} handleIdChecked={handleIdChecked}
                     handleClickQty={handleClickQty}
-                  />)}
+                  />
+                  ):
+                  <img src="/assets/img/empty-cart-png-Transparent-Images.png" 
+                  style={{margin: '0 auto', display: 'block'}}
+                  alt="Empty Cart"/>
+                }
+                  
               </div>
             </div>
             <div className="cart__right right">

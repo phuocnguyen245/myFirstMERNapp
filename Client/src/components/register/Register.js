@@ -8,24 +8,22 @@ import Swal from 'sweetalert2'
 import * as yup from "yup"
 import { URL } from "../../constants"
 
-
-
 const schema = yup.object().shape({
   username: yup.string().trim('Username no space')
-    .matches(/[a-zA-Z]/, 'Username can only contain Latin letters.').required(),
-  firstname: yup.string().matches(/[a-zA-Z]/, 'Password can only contain Latin letters.').required(),
-  lastname: yup.string().matches(/[a-zA-Z]/, 'Password can only contain Latin letters.').required(),
-  address: yup.string().required(),
-  email: yup.string().email().required(),
+    .matches(/[a-zA-Z]/, 'Username can only contain Latin letters.').required('Username is required'),
+  firstname: yup.string().matches(/[a-zA-Z]/, 'Firstname can only contain Latin letters.').required(),
+  lastname: yup.string().matches(/[a-zA-Z]/, 'Lastname can only contain Latin letters.').required(),
+  address: yup.string().required('Address is required'),
+  email: yup.string().email().required('Email is required'),
   tel: yup.number()
     .typeError("That doesn't look like a phone number").positive("A phone number can't start with a minus")
-    .integer("A phone number can't include a decimal point").min(8).required(),
+    .integer("A phone number can't include a decimal point").min(8).required('Tel is required'),
   password: yup.string()
     .min(8, 'Password is too short - should be 8 chars minimum.')
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character').required(),
+      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character').required('Password is required'),
   confirmPassword: yup.string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match').required()
+    .oneOf([yup.ref('password'), null], 'Passwords must match').required('Confirm Password is required')
 });
 
 const Register = () => {
@@ -69,17 +67,18 @@ const Register = () => {
     <section style={{
       background: 'url("./assets/img/main-banner.jpg")',
       padding: '40px',
-      height: '130vh'
+      height: '130vh',
+      backgroundSize: 'cover'
     }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center ">
           <div className="col-xl-7">
-            <div className="card card-registration" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', border: 'none', marginTop: '90px', backgroundSize: 'cover' }}>
+            <div className="card card-registration" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', border: 'none', marginTop: '90px' }}>
               <h3 className="text-center mt-2">Đăng ký</h3>
               <div className="col-xl-11" style={{ margin: '0 auto' }}>
                 <form onSubmit={handleSubmit(submitForm)}>
                   <div className="card-body text-white">
-                    {(errors?.username || errors?.password) &&
+                    {(errors?.username || errors?.password || errors?.firstname || errors?.lastname || errors?.address || errors?.tel || errors?.confirmPassword || errors?.email) &&
                       <div className="login-alert">
                         {errors?.username && <span className="block" style={{ color: '#a94442' }}>{errors.username?.message}</span>}
                         {errors?.firstname && <span className="block" style={{ color: '#a94442' }}>{errors.firstname?.message}</span>}

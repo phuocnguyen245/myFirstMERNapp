@@ -6,7 +6,6 @@
     width: 20%;
     min-width: 200px;
     top: 50%;
-    // background: #fff;
     ul {
       list-style: none;
       padding: 0;
@@ -54,6 +53,10 @@
         justify-content: space-between;
         align-items: center;
         background: #fff;
+        .active {
+          color: #ee4d2d !important;
+          border-bottom: 2px solid #ee4d2d;
+        }
         li {
           width: 100%;
           a {
@@ -80,15 +83,20 @@
               color: #ee4d2d;
               margin: 0;
             }
+            p:not(:last-child) {
+              padding: 0 8px;
+              margin-bottom: 0;
+              border-right: 1px solid #ccc;
+            }
             &-status {
-              svg {
-                color: #26aa99;
-              }
               p {
                 color: #26aa99;
                 padding: 0 8px;
                 margin-bottom: 0;
                 border-right: 1px solid #ccc;
+              }
+              svg {
+                color: #26aa99;
               }
             }
           }
@@ -114,7 +122,7 @@
               margin: 0;
             }
           }
-          .total-price{
+          .total-price {
             font-size: 22px;
             color: #ee4d2d;
             font-weight: 600;
@@ -147,10 +155,18 @@
     }
   }
 }
-.active.active-link {
-  color: #ee4d2d !important;
-  border-bottom: 2px solid #ee4d2d;
+.account {
+  .account-container {
+    .account-main {
+      label {
+        width: 120px;
+      }
+      .left__top {
+      }
+    }
+  }
 }
-.text-14{
+
+.text-14 {
   font-size: 14px;
 }

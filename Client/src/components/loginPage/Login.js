@@ -10,9 +10,12 @@ import * as yup from "yup"
 import { getUserInfoFetch } from '../../components/loginPage/loginSlice'
 
 const schema = yup.object().shape({
-  username: yup.string().required('Không được để trống Username'),
-  password: yup.string().min(4, 'Password có 4 ký tự trở lên')
-    .matches(/[a-zA-Z]/, 'Không được dùng ký tự đặc biệt').required()
+  username: yup.string().trim('Username no space')
+    .matches(/[a-zA-Z]/, 'Username can only contain Latin letters.').required('Username is required'),
+  password: yup.string()
+    .min(8, 'Password is too short - should be 8 chars minimum.')
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      'Password must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character').required('Password is required'),
 })
 
 const Login = () => {

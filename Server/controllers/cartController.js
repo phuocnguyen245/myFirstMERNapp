@@ -177,19 +177,19 @@ export const handleCheckOut = async (req, res) => {
 export const getOrderInfor = async (req, res) => {
   try {
     const { type, accessToken } = req.body
-    const { id } = jwtDecode(accessToken)
+    const { id } = jwt_decode(accessToken)
     if (type === 'wait') {
-      const orders = await Orders.find({ user_id: id, status: 1 })
+      const orders = await Orders.find({ user_id: id, status: 1 }).sort({ updatedAt: -1 })
       res.send({ orders })
     } else if (type === 'delivery') {
-      const orders = await Orders.find({ user_id: id, status: 2 })
+      const orders = await Orders.find({ user_id: id, status: 2 }).sort({ updatedAt: -1 })
       res.send({ orders })
     } else if (type === 'receive') {
-      const orders = await Orders.find({ user_id: id, status: 3 })
+      const orders = await Orders.find({ user_id: id, status: 3 }).sort({ updatedAt: -1 })
       res.send({ orders })
     }
     else if (type === 'cancel') {
-      const orders = await Orders.find({ user_id: id, status: 4 })
+      const orders = await Orders.find({ user_id: id, status: 4 }).sort({ updatedAt: -1 })
       res.send({ orders })
     }
     else {

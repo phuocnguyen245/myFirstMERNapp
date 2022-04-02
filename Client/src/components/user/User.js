@@ -20,10 +20,10 @@ const User = () => {
               </div>
               <ul className="ul-child">
                 <li className="pt-2 pb-2">
-                  <NavLink to="">Hồ sơ</NavLink>
+                  <NavLink to="account">Hồ sơ</NavLink>
                 </li>
                 <li className="pt-2 pb-2">
-                  <NavLink to="">Đổi mật khẩu</NavLink>
+                  <NavLink to="account/change-password">Đổi mật khẩu</NavLink>
                 </li>
               </ul>
             </li>

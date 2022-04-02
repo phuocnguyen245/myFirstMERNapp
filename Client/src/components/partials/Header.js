@@ -139,7 +139,7 @@ const Header = () => {
                   <div>
                     <p className="m-0 btn">{JSON.parse(username)}</p>
                     <ul className="user-control">
-                      <li>Tài khoản của tôi</li>
+                      <li><Link to="/user/account" onClick={handleAuth}>Tài khoản của tôi</Link></li>
                       <li><Link to="/user/purchase/type-all" onClick={handleAuth}>Đơn hàng của tôi</Link></li>
                       <li onClick={handleClick}>Đăng xuất</li>
                     </ul>

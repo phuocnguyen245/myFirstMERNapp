@@ -4,7 +4,7 @@ import { Categories } from '../models/categoriesModel.js'
 import { Shops } from '../models/shopsModel.js'
 import { Users } from '../models/usersModel.js'
 import bcrypt from 'bcrypt'
-
+import jwt_decode from "jwt-decode";
 export const hompageApi = async (req, res) => {
     try {
         const categories = await Categories.find()
@@ -87,5 +87,55 @@ export const logout = async (req, res) => {
         res.send('Logout successful')
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const getUser = async (req, res) => {
+    try {
+        const { accessToken } = req.params
+        const { id } = jwt_decode(accessToken)
+        const user = await Users.findById(id)
+        res.send({ user })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const handlePutUser = async (req, res) => {
+    try {
+        const { data, accessToken } = req.body
+        const { id } = jwt_decode(accessToken)
+        await Users.findByIdAndUpdate(id, {
+            name: data?.name,
+            tel: Number(data?.tel),
+            address: data?.address,
+            email: data?.email,
+        })
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(400)
+    }
+}
+
+export const handlePutPassword = async (req, res) => {
+    try {
+        const { data, accessToken } = req.body
+        const { id } = jwt_decode(accessToken)
+        const user = await Users.findById(id)
+        let isHave
+        if ((user) && await bcrypt.compare(data.oldpassword, user.password)) {
+            const encryptedPassword = await bcrypt.hash(data.confirmPassword, 10);
+            isHave = true
+            await Users.findByIdAndUpdate(id, {
+                password: encryptedPassword
+            })
+            res.sendStatus(200)
+        }
+        if ((user) && await bcrypt.compare(data.confirmPassword, user.password)) {
+            isHave = false
+            res.send('Duplicate')
+        }
+    } catch (error) {
+        res.sendStatus(400)
     }
 }
