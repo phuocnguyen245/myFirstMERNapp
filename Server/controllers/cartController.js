@@ -179,24 +179,41 @@ export const getOrderInfor = async (req, res) => {
     const { type, accessToken } = req.body
     const { id } = jwt_decode(accessToken)
     if (type === 'wait') {
-      const orders = await Orders.find({ user_id: id, status: 1 }).sort({ updatedAt: -1 })
+      const orders = await Orders.find({ user_ID: id, status: 1 }).sort({ updatedAt: -1 })
       res.send({ orders })
     } else if (type === 'delivery') {
-      const orders = await Orders.find({ user_id: id, status: 2 }).sort({ updatedAt: -1 })
+      const orders = await Orders.find({ user_ID: id, status: 2 }).sort({ updatedAt: -1 })
       res.send({ orders })
     } else if (type === 'receive') {
-      const orders = await Orders.find({ user_id: id, status: 3 }).sort({ updatedAt: -1 })
+      const orders = await Orders.find({ user_ID: id, status: 3 }).sort({ updatedAt: -1 })
       res.send({ orders })
     }
     else if (type === 'cancel') {
-      const orders = await Orders.find({ user_id: id, status: 4 }).sort({ updatedAt: -1 })
+      const orders = await Orders.find({ user_ID: id, status: 4 }).sort({ updatedAt: -1 })
       res.send({ orders })
     }
     else {
-      const orders = await Orders.find({ user_id: id }).sort({ updatedAt: -1 })
+      const orders = await Orders.find({ user_ID: id }).sort({ updatedAt: -1 })
       res.send({ orders })
     }
   } catch (error) {
     res.send('k có')
   }
+}
+
+export const handleReBuy = async (req, res) => {
+  // try {
+  //   const { product_IDS, accessToken } = req.body
+  //   const { id } = jwt_decode(accessToken)
+  //   const ids = product_IDS.map(p => p.product_ID)
+  //   console.log(ids);
+  //   const item = await CartItem.find({
+  //     user_ID: id, product_ID: { $ne: ids }
+  //   })
+  //   console.log(item);
+
+  // } catch (error) {
+  //   console.log(error);
+  //   res.sendStatus(400)
+  // }
 }

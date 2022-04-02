@@ -1,6 +1,7 @@
 
 import { yupResolver } from "@hookform/resolvers/yup"
 import axios from "axios"
+import Cookies from 'js-cookie'
 import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
@@ -8,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import Swal from 'sweetalert2'
 import * as yup from "yup"
 import { URL } from "../../../constants"
-import Cookies from 'js-cookie'
 
 
 const schema = yup.object().shape({
@@ -44,10 +44,8 @@ const ChangePassword = () => {
   }, [accessToken, navigate])
 
   const submitForm = async (data) => {
-    console.log(data);
     const postData = await axios.put(`${URL}/homepage/update-password`, { data, accessToken });
     const status = postData.data
-    console.log(status);
     if (status === 'OK') {
       reset({
         oldpassword: "",
@@ -140,13 +138,13 @@ const ChangePassword = () => {
                   <div className="mb-3 row">
                     <label htmlFor="Password" className="col-form-label text-right">Password</label>
                     <div className="col-sm-8" style={{ flex: '1', maxWidth: '100%' }}>
-                      <input type="text" className="form-control" id="Password" {...register("password")} />
+                      <input type="password" className="form-control" id="Password" {...register("password")} />
                     </div>
                   </div>
                   <div className="mb-3 row">
                     <label htmlFor="confirmPassword" className="col-form-label text-right">Confirm</label>
                     <div className="col-sm-8" style={{ flex: '1', maxWidth: '100%' }}>
-                      <input type="text" className="form-control" id="confirmPassword" {...register("confirmPassword")} />
+                      <input type="password" className="form-control" id="confirmPassword" {...register("confirmPassword")} />
                     </div>
                   </div>
                 </div>

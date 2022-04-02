@@ -24,14 +24,12 @@ const Cart = () => {
   const { cartItems, initLength, total } = useSelector(state => state.shop)
   const { total: changeTotal, length: changeLength } = useSelector(state => state.cart)
   const { userData } = useSelector(state => state.shop)
-  console.log(userData);
   const [totalCost, setTotalCost] = useState(0)
   const [cartQuantity, setCartQuantity] = useState(0)
 
   const [username, setUsername] = useState('')
   const [address, setAddress] = useState('')
   const [tel, setTel] = useState('')
-  console.log(cartItems?.length);
   useEffect(() => {
     setCartQuantity(initLength)
     document.title = "Giỏ hàng"
@@ -51,7 +49,6 @@ const Cart = () => {
   }, [navigate, accessToken, changeTotal, changeLength])
 
   const handleIdChecked = (id, isCheck) => {
-    console.log(id);
     dispatch(getCartTotalFetch({ accessToken, id, isCheck }))
     setTotalCost(changeTotal)
   }

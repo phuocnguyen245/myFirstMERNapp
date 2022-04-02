@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import React, { useEffect, useState } from "react";
 import { FaMoneyCheck } from "react-icons/fa";
 import { FiTruck } from "react-icons/fi";
-import { FormattedNumber, IntlProvider, FormattedDate, FormattedTime } from 'react-intl';
+import { FormattedDate, FormattedNumber, FormattedTime, IntlProvider } from 'react-intl';
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { URL } from "../../../constants/index";
@@ -38,6 +38,21 @@ const PurchaseAll = () => {
     }
     callApi()
   }, [type, accessToken, navigate]);
+
+  const handleReBuy = async (product_IDS) => {
+    // const post = await axios.post(`${URL}/purchase/re-add-to-cart`, { product_IDS, accessToken })
+    // const data = post.data
+    // if (data === 'OK') {
+    //   dispatch(getCartTotalFetch({ accessToken }))
+    //   Swal.fire({
+    //     position: 'top-end',
+    //     icon: 'success',
+    //     title: 'Your work has been saved',
+    //     showConfirmButton: false,
+    //     timer: 1500
+    //   })
+    // }
+  }
   return (
     <IntlProvider locale={'vi'} defaultLocale={'vi'}>
       <div className="purchase-list">
@@ -73,7 +88,7 @@ const PurchaseAll = () => {
                 <p className="mb-0 total-price"><FormattedNumber value={total} style="currency" currency="VND" /></p>
               </div>
               <div className="item__bottom d-flex justify-content-end align-items-center">
-                <button className="btn btn-buy">Mua lại</button>
+                <button onClick={() => handleReBuy(d?.products)} className="btn btn-buy">Mua lại</button>
                 <button className="btn btn-rate">Đánh giá</button>
               </div>
             </div>

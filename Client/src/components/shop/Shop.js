@@ -10,7 +10,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { getCartTotalFetch } from '../cart/cartSlice'
 import StartRating from '../partials/StartRating'
-import { addToCartFetch, getCartItemFetch } from './shopSlice'
+import { addToCartFetch } from './shopSlice'
 import './style.scss'
 const Shop = () => {
   const params = useParams()
@@ -86,10 +86,6 @@ const Shop = () => {
       setTimeout(() => navigate('/login'), 1500)
     }
   }
-
-  // useEffect(() => {
-  //   dispatch(getCartItemFetch({ accessToken }))
-  // }, [dispatch, accessToken])
 
   return (
     shop.map(s => (

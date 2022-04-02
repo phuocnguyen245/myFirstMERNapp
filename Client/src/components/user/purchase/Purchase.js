@@ -1,14 +1,8 @@
-import React, { useEffect } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
 import SearchContainer from "../../homepage/searchContainer/SearchContainer";
 
 const Purchase = () => {
-
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    navigate('/user/purchase/type-all')
-  }, [navigate])
 
   return (
     <div className="purchase">

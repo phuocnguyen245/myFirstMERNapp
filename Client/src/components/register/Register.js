@@ -21,7 +21,7 @@ const schema = yup.object().shape({
   password: yup.string()
     .min(8, 'Password is too short - should be 8 chars minimum.')
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character').required('Password is required'),
+      'Password must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character').required('Password is required'),
   confirmPassword: yup.string()
     .oneOf([yup.ref('password'), null], 'Passwords must match').required('Confirm Password is required')
 });
@@ -42,7 +42,6 @@ const Register = () => {
   })
   const navigate = useNavigate()
   const submitForm = async (data) => {
-    console.log(data);
     const fetch = await axios.post(`${URL}/login/add-user`, data)
     const getStatus = await fetch.data
     if (getStatus === "Created") {
@@ -142,7 +141,7 @@ const Register = () => {
                     </div>
                     <div className="d-flex justify-content-end pt-3">
 
-                      <button type="submit" className="btn btn-warning btn-lg ms-2">Submit form</button>
+                      <button type="submit" className="btn btn-warning btn-lg ms-2">Register</button>
                     </div>
                   </div>
                 </form>
