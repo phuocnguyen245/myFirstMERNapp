@@ -57,7 +57,6 @@ const PurchaseAll = () => {
     <IntlProvider locale={'vi'} defaultLocale={'vi'}>
       <div className="purchase-list">
         {data?.map(d => {
-
           const total = d.products.reduce((a, b) => a + b.cost * b.qty, 0)
           return <div className="items-purchase" key={d._id}>
             <div className="item" key={d._id}>
