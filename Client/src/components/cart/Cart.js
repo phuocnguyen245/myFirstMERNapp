@@ -125,6 +125,13 @@ const Cart = () => {
     }
   }
 
+  const deleteItem = (isDelete) => {
+    if (isDelete) {
+      setCartQuantity(0)
+      setTotalCost(0)
+    }
+  }
+  
   return (
     <IntlProvider locale={'vi'} defaultLocale={'vi'}>
 
@@ -155,7 +162,7 @@ const Cart = () => {
                 {cartItems?.length !== 0 ? cartItems?.map(item =>
                   <CartItem product_ID={item._id} name={item.name} key={item._id} cost={item.cost}
                     qty={item.qty} img={item.img} slug={item.slug} cartItem_ID={item.cartItem_ID}
-                    isCheck={item.isCheck} handleIdChecked={handleIdChecked}
+                    isCheck={item.isCheck} handleIdChecked={handleIdChecked} isDelete={deleteItem}
                     handleClickQty={handleClickQty}
                   />
                   ):

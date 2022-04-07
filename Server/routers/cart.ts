@@ -1,9 +1,9 @@
 import express from 'express';
-import verify from '../middleware/auth/auth.js';
+import verify from '../middleware/auth/auth';
 import {
     addToCart, renderCart, handleChangeQuantity, handleDeleteCartItem, getCartTotal,
     handleDeleteAllItems, handleCheckOut
-} from '../controllers/cartController.js';
+} from '../controllers/cartController';
 const router = express.Router()
 
 router.post('/', verify, renderCart)

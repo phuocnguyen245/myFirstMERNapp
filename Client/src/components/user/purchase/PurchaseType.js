@@ -4,12 +4,17 @@ import React, { useEffect, useState } from "react";
 import { FaMoneyCheck } from "react-icons/fa";
 import { FiTruck } from "react-icons/fi";
 import { FormattedDate, FormattedNumber, FormattedTime, IntlProvider } from 'react-intl';
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import { URL } from "../../../constants/index";
+import { getCartItemFetch } from "../../shop/shopSlice";
 
 const PurchaseAll = () => {
   const accessToken = Cookies.get('accessToken')
+  const dispatch = useDispatch()
   const { type } = useParams();
 
   const navigate = useNavigate()
@@ -40,19 +45,44 @@ const PurchaseAll = () => {
   }, [type, accessToken, navigate]);
 
   const handleReBuy = async (product_IDS) => {
-    // const post = await axios.post(`${URL}/purchase/re-add-to-cart`, { product_IDS, accessToken })
-    // const data = post.data
-    // if (data === 'OK') {
-    //   dispatch(getCartTotalFetch({ accessToken }))
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Your work has been saved',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   })
-    // }
+    const post = await axios.post(`${URL}/purchase/re-add-to-cart`, { product_IDS, accessToken })
+    const data = await post.data
+    const { status, length } = data
+    if (status === 200 && length > 0) {
+      dispatch(getCartItemFetch({ accessToken }))
+      toast.success(`Added ${length} to cart`, {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+    } else if (status === 200 && length === 0) {
+      toast.warn(`No item to add`, {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error(`Fail`, {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
+
   return (
     <IntlProvider locale={'vi'} defaultLocale={'vi'}>
       <div className="purchase-list">
@@ -94,6 +124,17 @@ const PurchaseAll = () => {
           </div>
         })}
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </IntlProvider>
   );
 };

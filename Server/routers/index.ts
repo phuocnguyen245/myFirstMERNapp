@@ -1,9 +1,9 @@
 import express from 'express';
-import cart from './cart.js';
-import homepage from './homepage.js';
-import login from './login.js';
-import product from './product.js'
-import purchase from './purchase.js';
+import cart from './cart';
+import homepage from './homepage';
+import login from './login';
+import product from './product'
+import purchase from './purchase';
 const router = express.Router()
 
 router.use('/api/homepage/', homepage)

@@ -1,5 +1,5 @@
 import express from 'express';
-import { homepageSearchApi, hompageApi, getUser, handlePutUser, handlePutPassword } from '../controllers/homepageController.js';
+import { homepageSearchApi, hompageApi, getUser, handlePutUser, handlePutPassword } from '../controllers/homepageController';
 const router = express.Router()
 
 router.get('/', hompageApi);

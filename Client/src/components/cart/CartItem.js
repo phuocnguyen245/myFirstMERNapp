@@ -12,7 +12,7 @@ import { deleteCartItemFetch, putShopQtyFetch } from './cartSlice';
 
 
 
-function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleIdChecked, isCheck, handleClickQty }) {
+function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleIdChecked, isCheck, handleClickQty, isDelete }) {
 
   const accessToken = Cookies.get('accessToken');
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleI
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
+          isDelete(true)
           dispatch(deleteCartItemFetch(cartItem_ID));
           swalWithBootstrapButtons.fire(
             'Deleted!',
@@ -89,6 +90,7 @@ function CartItem({ product_ID, name, qty, cost, img, slug, cartItem_ID, handleI
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
+        isDelete(true)
         dispatch(deleteCartItemFetch(cartItem_ID));
         swalWithBootstrapButtons.fire(
           'Deleted!',

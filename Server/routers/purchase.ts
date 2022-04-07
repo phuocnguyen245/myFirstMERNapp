@@ -1,5 +1,5 @@
 import express from 'express';
-import { getOrderInfor, handleReBuy } from '../controllers/cartController.js';
+import { getOrderInfor, handleReBuy } from '../controllers/cartController';
 
 const router = express.Router()
 

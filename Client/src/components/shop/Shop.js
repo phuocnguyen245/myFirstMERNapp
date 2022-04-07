@@ -8,9 +8,8 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { getCartTotalFetch } from '../cart/cartSlice'
 import StartRating from '../partials/StartRating'
-import { addToCartFetch } from './shopSlice'
+import { addToCartFetch, getCartItemFetch } from './shopSlice'
 import './style.scss'
 const Shop = () => {
   const params = useParams()
@@ -24,6 +23,7 @@ const Shop = () => {
   const [counter, setCounter] = useState(1);
   const [text, setText] = useState('Thêm vào giỏ hàng')
   const [btnStyle, setBtnStyle] = useState(false)
+
   useEffect(() => {
     if (counter < 0) {
       toast.error('Số lượng > 0', {
@@ -42,23 +42,26 @@ const Shop = () => {
   const { slug } = params
   const accessToken = Cookies.get('accessToken')
 
+  const getData = async (slug) => {
+    const fetch = await axios.get(`https://shopeefood.herokuapp.com/api/product/${slug}`)
+    const { shop } = await fetch.data
+    setShop(shop)
+  }
+  
   useEffect(() => {
-    const getData = async () => {
-      const fetch = await axios.get(`https://shopeefood.herokuapp.com/api/product/${slug}`)
-      const { shop } = await fetch.data
-      setShop(shop)
-    }
-    getData()
+    getData(slug)
+    return () => { setShop([]) };
   }, [slug])
 
   const navigate = useNavigate()
   const handleClick = () => {
+    let timer
     if (accessToken) {
       dispatch(addToCartFetch({ slug, qty: counter, accessToken }))
-      dispatch(getCartTotalFetch({ accessToken }))
+      dispatch(getCartItemFetch({ accessToken }))
       setText("Đã thêm")
       setBtnStyle(true)
-      setTimeout(() => {
+      timer = setTimeout(() => {
         setBtnStyle(false)
         setText("Thêm vào giỏ hàng")
       }, 3000)
@@ -72,7 +75,6 @@ const Shop = () => {
         progress: undefined,
       });
       setCounter(1)
-
     } else {
       toast.error('Bạn chưa đăng nhập', {
         position: "top-center",
@@ -83,6 +85,7 @@ const Shop = () => {
         draggable: true,
         progress: undefined,
       });
+      clearTimeout(timer)
       setTimeout(() => navigate('/login'), 1500)
     }
   }

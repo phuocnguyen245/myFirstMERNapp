@@ -44,6 +44,7 @@ const Register = () => {
   const submitForm = async (data) => {
     const fetch = await axios.post(`${URL}/login/add-user`, data)
     const getStatus = await fetch.data
+    console.log(getStatus);
     if (getStatus === "Created") {
       Swal.fire({
         position: 'center',
@@ -53,7 +54,19 @@ const Register = () => {
         timer: 1500
       })
       setTimeout(() => navigate('/login'), 1700)
-    } else {
+    } else if(getStatus === 'Error Username') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Username has already existed',
+      })
+    } else if (getStatus === 'Error Email') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Email has already existed',
+      })
+    }else{
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

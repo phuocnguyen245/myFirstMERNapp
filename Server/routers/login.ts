@@ -3,7 +3,7 @@ import {
     addUser,
     checkUser,
     logout
-} from '../controllers/homepageController.js';
+} from '../controllers/homepageController';
 const router = express.Router()
 router.get('/logout', logout)
 router.post('/add-user', addUser)

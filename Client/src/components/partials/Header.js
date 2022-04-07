@@ -56,7 +56,6 @@ const Header = () => {
   }
 
   const handleCartClick = () => {
-    dispatch(getCartItemFetch({ accessToken }))
     if (accessToken) {
       dispatch(getCartItemFetch({ accessToken }))
       dispatch(getCartTotalFetch({ accessToken }))
