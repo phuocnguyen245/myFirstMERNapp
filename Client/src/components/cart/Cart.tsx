@@ -93,7 +93,6 @@ const Cart = () => {
       });
   };
   useEffect(() => {
-    let userData: any;
     setUsername(userData?.rest?.name);
     setAddress(userData?.rest?.address);
     setTel(userData?.rest?.tel);
