@@ -2,7 +2,7 @@ import express from 'express';
 import cart from './cart';
 import homepage from './homepage';
 import login from './login';
-import product from './product'
+import product from './product';
 import purchase from './purchase';
 const router = express.Router()
 

@@ -103,25 +103,26 @@ header {
           width: 200px;
           padding: 0;
           right: 0;
-          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-            rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-            rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+            rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+            rgba(0, 0, 0, 0.09) 0px -3px 5px;
           li {
             // background-color: red;
             padding: 8px 12px;
-            &:hover, a:hover{
-              transition: .2s;
+            &:hover,
+            a:hover {
+              transition: 0.2s;
               color: rgb(244, 136, 136);
               background: rgb(243, 239, 239);
             }
-            a{
+            a {
               display: block;
               text-decoration: none;
               color: inherit;
             }
           }
           &:before {
-            content: "0";
+            content: '0';
             position: absolute;
             width: 200px;
             color: transparent;
@@ -182,7 +183,7 @@ footer {
           padding: 0 1px;
           top: 50%;
           transform: translateY(-50%);
-          content: "|";
+          content: '|';
         }
       }
     }
