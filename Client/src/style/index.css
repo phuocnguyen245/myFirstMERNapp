@@ -56,7 +56,7 @@ body {
   color: #fff;
 }
 .absolute {
-  position: absolute;
+  position: absolute !important;
 }
 .block {
   display: block;

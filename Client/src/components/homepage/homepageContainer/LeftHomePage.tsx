@@ -6,7 +6,6 @@ import SearchContainer from '../searchContainer/SearchContainer';
 const LeftHomePage = () => {
   const [addAbsolute, setAddAbsolute] = useState('content-container-left');
   const [plusHeight, setPlusHeight] = useState(0);
-
   const leftRef: any = useRef();
 
   useEffect(() => {
@@ -15,25 +14,46 @@ const LeftHomePage = () => {
   }, []);
 
   useEffect(() => {
-    const scroll = () => {
-      const scroll = window.scrollY;
+    window.onload = () => {
+      setPlusHeight(0);
+      window.scrollTo(0, 0);
+    };
+  }, []);
 
-      const rightValue: any = localStorage.getItem('rightHeight');
-      if (scroll >= rightValue - window.innerHeight) {
+  const isLoad = useSelector((state: any) => state.homepage.load);
+
+  useEffect(() => {
+    if (isLoad === true) {
+      console.log('isLoad', isLoad);
+      setAddAbsolute('content-container-left');
+      setPlusHeight(0);
+    }
+  }, [isLoad]);
+
+  const rightValue = Number(localStorage.getItem('rightHeight'));
+  useEffect(() => {
+    const top = rightValue - window.innerHeight;
+    const handleScroll = () => {
+      const scroll = window.scrollY;
+      if (scroll === 0) {
+        setAddAbsolute('content-container-left');
+        setPlusHeight(0);
+      } else if (scroll > top) {
         setAddAbsolute('content-container-left absolute');
-        setPlusHeight(rightValue - window.innerHeight - scroll);
+        setPlusHeight(top);
       } else {
         setAddAbsolute('content-container-left');
         setPlusHeight(0);
       }
     };
-    window.addEventListener('scroll', scroll);
-    return () => {
-      window.removeEventListener('scroll', scroll);
-    };
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [rightValue]);
+
 
   const categories = useSelector(categoriesSelector);
+
   return (
     <div ref={leftRef} className={addAbsolute} style={{ top: `${plusHeight}px` }}>
       <div className="container">

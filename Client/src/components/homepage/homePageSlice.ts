@@ -6,6 +6,8 @@ export const homePageSlice = createSlice({
     shops: [],
     text: '',
     searchData: [],
+    load: false,
+    height: 0
   },
   reducers: {
     //HomePage data
@@ -25,6 +27,13 @@ export const homePageSlice = createSlice({
     getSearchSuccess: (state, action) => {
       state.searchData = action.payload;
     },
+    //load More
+    isLoad: (state, action) => {
+      state.load = action.payload;
+    },
+    getHeight : (state, action) => {
+      state.height = action.payload
+    }
   },
 });
 
@@ -35,6 +44,8 @@ export const {
   getHomepageDataFailure,
   getSearchSuccess,
   getSearchFetch,
+  isLoad,
+  getHeight,
 } = homePageSlice.actions;
 
 export default homePageSlice.reducer;

@@ -16,6 +16,42 @@ export const hompageApi = async (req: Request, res: Response) => {
   }
 };
 
+export const foodCategory = async (req: Request, res: Response) => {
+  try {
+    const { page } = req.params;
+    const limit: number = (Number(page) + 1) * 1;
+    const data = await Shops.find({ category: 'Đồ ăn' }).limit(limit);
+    res.status(200).send({ data, category: 'Đồ ăn' });
+  } catch (error) {
+    console.log(error);
+    res.status(404).send('Error');
+  }
+};
+
+export const drinkCategory = async (req: Request, res: Response) => {
+  try {
+    const { page } = req.params;
+    const limit: number = (Number(page) + 1) * 1;
+    const data = await Shops.find({ category: 'Đồ uống' }).limit(limit);
+    res.status(200).send({ data, category:'Đồ uống'});
+  } catch (error) {
+    console.log(error);
+    res.status(404).send('Error');
+  }
+};
+
+export const snackCategory = async (req: Request, res: Response) => {
+  try {
+    const { page } = req.params;    
+    const limit: number = (Number(page) + 1) * 3;
+    const data = await Shops.find({ category: 'Ăn vặt' }).limit(limit);
+    res.status(200).send({ data, category: 'Ăn vặt' });
+  } catch (error) {
+    console.log(error);
+    res.status(404).send('Error');
+  }
+};
+
 export const homepageSearchApi = async (req: Request, res: Response) => {
   try {
     const query = req.query.q;
