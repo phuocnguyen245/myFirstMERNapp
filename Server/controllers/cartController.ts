@@ -13,15 +13,15 @@ export const renderCart = async (req: Request, res: Response) => {
       const mergerCartItemAndShops = await CartItem.find({ user_ID: id }).populate({
         path: 'product_ID',
       });
-      const userInfo = await Users.findById(id);
+      const userInfo: any = await Users.findById(id);
 
       const getCartItem = await CartItem.find({ user_ID: id, isCheck: true }).populate({
         path: 'product_ID',
       });
 
-      const total = getCartItem.reduce((a, b) => a + b.product_ID.cost * b.qty, 0);
+      const total = getCartItem.reduce((a: any, b:any) => a + b?.product_ID?.cost * b.qty, 0);
 
-      const data = mergerCartItemAndShops.map((d) => {
+      const data = mergerCartItemAndShops.map((d: any) => {
         return {
           img: d.product_ID.img,
           name: d.product_ID.shopName,
@@ -57,12 +57,12 @@ export const addToCart = async (req: Request, res: Response) => {
     const { slug, qty, accessToken }: { slug: string; qty: number; accessToken: string } = req.body;
     const { id: user_ID }: { id: string } = jwt_decode(accessToken);
     const shop = await Shops.find({ slug });
-    const { _id: shopID } = shop.find((s) => s._id);
+    const { _id: shopID } = shop.find((s) => s._id) as any;
     const isHave = await CartItem.find({ product_ID: shopID, user_ID });
     if (isHave.length === 1) {
       const cartItemID = isHave.map((item) => item._id);
       const quantity = isHave.map((item) => item.qty);
-      const cartItem = await CartItem.findByIdAndUpdate(cartItemID, {
+      const cartItem: any = await CartItem.findByIdAndUpdate(cartItemID, {
         qty: Number(quantity) + qty,
       });
       await cartItem.save();
@@ -129,7 +129,7 @@ export const getCartTotal = async (req: Request, res: Response) => {
       const getCartItem = await CartItem.find({ user_ID: id, isCheck: true }).populate({
         path: 'product_ID',
       });
-      const total = getCartItem.reduce((a, b) => a + b.product_ID.cost * b.qty, 0);
+      const total = getCartItem.reduce((a, b: any) => a + b.product_ID.cost * b.qty, 0);
       res.send({ total, length: getCartItem.length });
     }
   } catch (error) {
@@ -161,7 +161,7 @@ export const handleCheckOut = async (req: Request, res: Response) => {
         path: 'product_ID',
       });
       let array: any[] = [];
-      productCheckout.map((product) => {
+      productCheckout.map((product: any) => {
         const products = {
           product_ID: product.product_ID._id,
           qty: product.qty,

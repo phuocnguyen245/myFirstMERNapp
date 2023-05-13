@@ -103,8 +103,8 @@ export const checkUser = async (req: Request, res: Response) => {
   try {
     if (req.body) {
       const { username, password } = req.body;
-      const user = await Users.findOne({ username });
-      if (user && (await bcrypt.compare(password, user.password))) {
+      const user: any = await Users.findOne({ username });
+      if (user && (await bcrypt.compare(password, user?.password))) {
         const accessToken = generateAccessToken(user);
         res.send({ user, accessToken });
       } else {
@@ -156,7 +156,7 @@ export const handlePutPassword = async (req: Request, res: Response) => {
   try {
     const { data, accessToken } = req.body;
     const { id }: { id: string } = jwt_decode(accessToken);
-    const user = await Users.findById(id);
+    const user: any = await Users.findById(id);
     let isHave;
     if (user && (await bcrypt.compare(data.oldpassword, user.password))) {
       const encryptedPassword = await bcrypt.hash(data.confirmPassword, 10);
